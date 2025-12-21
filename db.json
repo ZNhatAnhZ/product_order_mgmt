@@ -1,0 +1,140 @@
+{
+  "dashboard": {
+    "id": 1,
+    "lastUpdated": "2025-12-21T10:30:00Z",
+      "totalProducts": {
+        "value": 1247,
+        "previousValue": 1115,
+        "change": 11.8,
+        "changeType": "positive"
+      },
+      "totalOrders": {
+        "value": 856,
+        "previousValue": 903,
+        "change": -5.2,
+        "changeType": "negative"
+      },
+      "pendingOrders": {
+        "value": 23,
+        "status": "warning",
+        "badge": "Pending"
+      },
+      "revenue": {
+        "value": 45678.90,
+        "previousValue": 42150.75,
+        "change": 8.4,
+        "changeType": "positive",
+        "currency": "USD"
+      }
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "Laptop Dell XPS 13",
+      "price": 1299.99,
+      "category": "Electronics",
+      "stock": 45
+    },
+    {
+      "id": 2,
+      "name": "iPhone 15 Pro",
+      "price": 1199.99,
+      "category": "Electronics",
+      "stock": 3
+    },
+    {
+      "id": 3,
+      "name": "Nike Air Max",
+      "price": 159.99,
+      "category": "Shoes",
+      "stock": 78
+    },
+    {
+      "id": 4,
+      "name": "MacBook Pro 14",
+      "price": 1999.99,
+      "category": "Electronics",
+      "stock": 7
+    },
+    {
+      "id": 5,
+      "name": "AirPods Pro",
+      "price": 249.99,
+      "category": "Electronics",
+      "stock": 2
+    },
+    {
+      "id": 6,
+      "name": "Samsung Galaxy S24",
+      "price": 899.99,
+      "category": "Electronics",
+      "stock": 15
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "customerId": 101,
+      "customerName": "John Doe",
+      "status": "completed",
+      "total": 1299.99,
+      "createdAt": "2025-12-20T15:30:00Z",
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1,
+          "price": 1299.99
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "customerId": 102,
+      "customerName": "Jane Smith",
+      "status": "pending",
+      "total": 359.98,
+      "createdAt": "2025-12-21T09:15:00Z",
+      "items": [
+        {
+          "productId": 3,
+          "quantity": 2,
+          "price": 159.99
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "customerId": 103,
+      "customerName": "Mike Johnson",
+      "status": "pending",
+      "total": 1199.99,
+      "createdAt": "2025-12-21T11:20:00Z",
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 1,
+          "price": 1199.99
+        }
+      ]
+    }
+  ],
+  "analytics": {
+    "monthly": {
+      "currentMonth": {
+        "products": 1247,
+        "orders": 856,
+        "revenue": 45678.90
+      },
+      "previousMonth": {
+        "products": 1115,
+        "orders": 903,
+        "revenue": 42150.75
+      }
+    },
+    "daily": {
+      "averageOrders": 28.5,
+      "averageRevenue": 1522.63
+    }
+  }
+}
+
