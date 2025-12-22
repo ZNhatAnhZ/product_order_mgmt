@@ -9,6 +9,7 @@ import App from "./components/App.jsx";
 import Login from "./routes/Login.jsx";
 import {Navigation} from "./routes/Navigation.jsx";
 import Dashboard from "./routes/Dashboard.jsx";
+import ProductList from "./routes/ProductList.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
@@ -25,16 +26,28 @@ const router = createBrowserRouter([
         element: <App><ProtectedRoute><Dashboard/></ProtectedRoute></App>,
     },
     {
+        path: "/products",
+        element: <App><ProtectedRoute><ProductList/></ProtectedRoute></App>,
+    },
+    {
+        path: "/products/new",
+        element: <App><ProtectedRoute><div>New Product Page - Coming Soon</div></ProtectedRoute></App>,
+    },
+    {
+        path: "/products/:id",
+        element: <App><ProtectedRoute><div>Product Detail Page - Coming Soon</div></ProtectedRoute></App>,
+    },
+    {
+        path: "/products/:id/edit",
+        element: <App><ProtectedRoute><div>Edit Product Page - Coming Soon</div></ProtectedRoute></App>,
+    },
+    {
         path: "/orders",
         element: <App><ProtectedRoute><div>Orders Page - Coming Soon</div></ProtectedRoute></App>,
     },
     {
         path: "/orders/:id",
         element: <App><ProtectedRoute><div>Order Detail Page - Coming Soon</div></ProtectedRoute></App>,
-    },
-    {
-        path: "/products/:id",
-        element: <App><ProtectedRoute><div>Product Detail Page - Coming Soon</div></ProtectedRoute></App>,
     },
     {
         path: "*",

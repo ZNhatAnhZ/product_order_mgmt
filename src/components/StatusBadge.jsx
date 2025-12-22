@@ -29,6 +29,16 @@ export const StatusBadge = styled.span`
                     background-color: #fee2e2;
                     color: #991b1b;
                 `;
+        case 'active':
+            return `
+                    background-color: #d1fae5;
+                    color: #065f46;
+                `;
+        case 'inactive':
+            return `
+                    background-color: #fee2e2;
+                    color: #991b1b;
+                `;
         default:
             return `
                     background-color: #f3f4f6;

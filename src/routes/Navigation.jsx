@@ -2,8 +2,15 @@ import {Link} from "react-router";
 
 export const Navigation = () => {
     return (<div>
-            <Link to='/login'>Login</Link>
-            <Link to='/dashboard' style={{marginLeft: '1rem'}}>Dashboard</Link>
+            <div>
+                <Link to='/login'>Login</Link>
+            </div>
+            <div>
+                <Link to='/dashboard'>Dashboard</Link>
+            </div>
+            <div>
+                <Link to='/products'>Products</Link>
+            </div>
         </div>
     )
 }
