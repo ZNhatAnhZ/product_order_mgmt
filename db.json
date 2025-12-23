@@ -194,7 +194,7 @@
       "id": 3,
       "customerId": 103,
       "customerName": "Mike Johnson",
-      "status": "pending",
+      "status": "processing",
       "total": 1199.99,
       "createdAt": "2025-12-21T11:20:00Z",
       "items": [
@@ -202,6 +202,151 @@
           "productId": 2,
           "quantity": 1,
           "price": 1199.99
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "customerId": 104,
+      "customerName": "Sarah Wilson",
+      "status": "completed",
+      "total": 2459.98,
+      "createdAt": "2025-12-19T14:45:00Z",
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1,
+          "price": 1299.99
+        },
+        {
+          "productId": 2,
+          "quantity": 1,
+          "price": 1199.99
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "customerId": 105,
+      "customerName": "David Brown",
+      "status": "cancelled",
+      "total": 159.99,
+      "createdAt": "2025-12-18T16:20:00Z",
+      "items": [
+        {
+          "productId": 3,
+          "quantity": 1,
+          "price": 159.99
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "customerId": 106,
+      "customerName": "Emma Davis",
+      "status": "processing",
+      "total": 319.98,
+      "createdAt": "2025-12-22T10:30:00Z",
+      "items": [
+        {
+          "productId": 3,
+          "quantity": 2,
+          "price": 159.99
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "customerId": 107,
+      "customerName": "Robert Taylor",
+      "status": "pending",
+      "total": 1999.99,
+      "createdAt": "2025-12-22T13:15:00Z",
+      "items": [
+        {
+          "productId": 4,
+          "quantity": 1,
+          "price": 1999.99
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "customerId": 108,
+      "customerName": "Lisa Anderson",
+      "status": "completed",
+      "total": 479.97,
+      "createdAt": "2025-12-17T12:00:00Z",
+      "items": [
+        {
+          "productId": 3,
+          "quantity": 3,
+          "price": 159.99
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "customerId": 109,
+      "customerName": "Christopher Lee",
+      "status": "processing",
+      "total": 2499.98,
+      "createdAt": "2025-12-23T08:45:00Z",
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1,
+          "price": 1299.99
+        },
+        {
+          "productId": 2,
+          "quantity": 1,
+          "price": 1199.99
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "customerId": 110,
+      "customerName": "Amanda White",
+      "status": "pending",
+      "total": 639.96,
+      "createdAt": "2025-12-23T11:30:00Z",
+      "items": [
+        {
+          "productId": 3,
+          "quantity": 4,
+          "price": 159.99
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "customerId": 111,
+      "customerName": "Kevin Martinez",
+      "status": "cancelled",
+      "total": 1299.99,
+      "createdAt": "2025-12-16T15:45:00Z",
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1,
+          "price": 1299.99
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "customerId": 112,
+      "customerName": "Michelle Garcia",
+      "status": "completed",
+      "total": 3999.98,
+      "createdAt": "2025-12-15T09:20:00Z",
+      "items": [
+        {
+          "productId": 4,
+          "quantity": 2,
+          "price": 1999.99
         }
       ]
     }

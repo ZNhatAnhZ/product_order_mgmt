@@ -8,42 +8,41 @@ export const StatusBadge = styled.span`
     text-transform: capitalize;
     
     ${props => {
-    switch (props.status) {
-        case 'completed':
-            return `
+        const statusOrVariant = props.variant || props.status;
+        
+        switch (statusOrVariant) {
+            case 'success':
+            case 'completed':
+            case 'active':
+                return `
                     background-color: #d1fae5;
                     color: #065f46;
                 `;
-        case 'pending':
-            return `
+            case 'warning':
+            case 'pending':
+                return `
                     background-color: #fed7aa;
                     color: #9a3412;
                 `;
-        case 'processing':
-            return `
+            case 'info':
+            case 'processing':
+                return `
                     background-color: #dbeafe;
                     color: #1e40af;
                 `;
-        case 'cancelled':
-            return `
+            case 'danger':
+            case 'cancelled':
+            case 'inactive':
+                return `
                     background-color: #fee2e2;
                     color: #991b1b;
                 `;
-        case 'active':
-            return `
-                    background-color: #d1fae5;
-                    color: #065f46;
-                `;
-        case 'inactive':
-            return `
-                    background-color: #fee2e2;
-                    color: #991b1b;
-                `;
-        default:
-            return `
+            case 'secondary':
+            default:
+                return `
                     background-color: #f3f4f6;
                     color: #374151;
                 `;
-    }
-}}
+        }
+    }}
 `;

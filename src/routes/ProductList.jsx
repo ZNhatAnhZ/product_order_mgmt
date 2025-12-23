@@ -8,7 +8,7 @@ import SearchInput from '../components/SearchInput.jsx';
 import ProductTable from '../components/ProductTable.jsx';
 import Pagination from '../components/Pagination.jsx';
 import Modal from '../components/Modal.jsx';
-import {FILTER_ACTIVE, FILTER_ALL, FILTER_INACTIVE} from "../constants/Enum.js";
+import {PRODUCT_STATUS} from "../constants/Enum.js";
 
 const GapDiv = styled.div`
     display: flex;
@@ -19,7 +19,7 @@ const GapDiv = styled.div`
 export default function ProductList() {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
-    const [statusFilter, setStatusFilter] = useState(FILTER_ALL);
+    const [statusFilter, setStatusFilter] = useState(PRODUCT_STATUS.ALL);
     const [deleteModal, setDeleteModal] = useState({isOpen: false, product: null});
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
     const {
@@ -35,9 +35,9 @@ export default function ProductList() {
 
         return products.filter(product => {
             const matchesSearch = debouncedSearchTerm === '' || product.name.includes(debouncedSearchTerm);
-            const matchesStatus = statusFilter === FILTER_ALL ||
-                (statusFilter === FILTER_ACTIVE && product.status === FILTER_ACTIVE) ||
-                (statusFilter === FILTER_INACTIVE && product.status === FILTER_INACTIVE);
+            const matchesStatus = statusFilter === PRODUCT_STATUS.ALL ||
+                (statusFilter === PRODUCT_STATUS.ACTIVE && product.status === PRODUCT_STATUS.ACTIVE) ||
+                (statusFilter === PRODUCT_STATUS.INACTIVE && product.status === PRODUCT_STATUS.INACTIVE);
             return matchesSearch && matchesStatus;
         });
     }, [products, debouncedSearchTerm, statusFilter]);
@@ -78,7 +78,7 @@ export default function ProductList() {
 
     const handleClearFilters = () => {
         setSearchTerm('');
-        setStatusFilter(FILTER_ALL);
+        setStatusFilter(PRODUCT_STATUS.ALL);
     };
 
     if (error) {
@@ -122,7 +122,10 @@ export default function ProductList() {
 
     return (
         <div>
-            <h2>Products</h2>
+            <div>
+                <h2>Products</h2>
+                <div>{totalItems} {totalItems === 1 ? 'product' : 'products'} total</div>
+            </div>
             <GapDiv>
                 <SearchInput
                     value={searchTerm}
@@ -150,7 +153,8 @@ export default function ProductList() {
                 <p>Are you sure you want to delete "{deleteModal.product?.name}"?</p>
                 <GapDiv>
                     <button onClick={() => setDeleteModal({isOpen: false, product: null})}>Cancel</button>
-                    <button onClick={confirmDelete} disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
+                    <button onClick={confirmDelete}
+                            disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
                 </GapDiv>
             </Modal>
         </div>

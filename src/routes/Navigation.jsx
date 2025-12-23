@@ -12,6 +12,9 @@ export const Navigation = () => {
             <div>
                 <Link to='/products'>Products</Link>
             </div>
+            <div>
+                <Link to='/orders'>Orders</Link>
+            </div>
         </div>
     )
 }

@@ -11,6 +11,7 @@ import ProductList from "./routes/ProductList.jsx";
 import ProductDetail from "./routes/ProductDetail.jsx";
 import {ProductCreate} from "./routes/ProductCreate.jsx";
 import {ProductEdit} from "./routes/ProductEdit.jsx";
+import OrderList from "./routes/OrderList.jsx";
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     {
         path: "/dashboard",
         element: <App><ProtectedRoute><Dashboard/></ProtectedRoute></App>,
+    },
+    {
+        path: "/orders",
+        element: <App><ProtectedRoute><OrderList/></ProtectedRoute></App>,
     },
     {
         path: "/products",

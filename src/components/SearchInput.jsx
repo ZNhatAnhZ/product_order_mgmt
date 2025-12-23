@@ -10,13 +10,6 @@ export default function SearchInput({
 }) {
     const inputRef = useRef(null);
 
-    const handleClear = () => {
-        onChange('');
-        inputRef.current?.focus();
-    };
-
-    const showClear = value && !isSearching;
-
     return (
         <div>
             <input
@@ -28,18 +21,8 @@ export default function SearchInput({
                 disabled={disabled}
                 {...props}
             />
-
-            {isSearching ? (
-                <div>
-                    Searching...
-                </div>
-            ) : showClear ? (
-                <button
-                    type="button"
-                    onClick={handleClear}
-                    title="Clear search"
-                >×</button>
-            ) : null}
+            <span> </span>
+            {isSearching ? (<span>Searching...</span>) : null}
         </div>
     );
 }
