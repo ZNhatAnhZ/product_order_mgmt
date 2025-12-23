@@ -2,9 +2,7 @@ import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
 import './assets/index.css'
 import { createBrowserRouter } from "react-router";
-import {
-    RouterProvider,
-} from "react-router/dom";
+import {RouterProvider,} from "react-router/dom";
 import App from "./components/App.jsx";
 import {Login} from "./routes/Login.jsx";
 import {Navigation} from "./routes/Navigation.jsx";
@@ -12,6 +10,7 @@ import Dashboard from "./routes/Dashboard.jsx";
 import ProductList from "./routes/ProductList.jsx";
 import ProductDetail from "./routes/ProductDetail.jsx";
 import {ProductCreate} from "./routes/ProductCreate.jsx";
+import {ProductEdit} from "./routes/ProductEdit.jsx";
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
@@ -41,7 +40,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/products/:id/edit",
-        element: <App><ProtectedRoute><div>Edit Product Page - Coming Soon</div></ProtectedRoute></App>,
+        element: <App><ProtectedRoute><ProductEdit/></ProtectedRoute></App>,
     },
     {
         path: "/orders",

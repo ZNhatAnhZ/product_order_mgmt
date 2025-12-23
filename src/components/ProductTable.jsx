@@ -75,7 +75,7 @@ export default function ProductTable({products, onView, onEdit, onDelete}) {
                         <td>
                             <ActionButtons>
                                 <button onClick={() => onView(product.id, product)}>View</button>
-                                <button onClick={() => onEdit(product.id)}>Edit</button>
+                                <button onClick={() => onEdit(product.id, product)}>Edit</button>
                                 <button onClick={() => onDelete(product)}>Delete</button>
                             </ActionButtons>
                         </td>

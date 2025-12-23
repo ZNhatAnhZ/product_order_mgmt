@@ -45,7 +45,7 @@ export default function ProductDetail() {
     const [deleteModal, setDeleteModal] = useState({isOpen: false});
 
     const handleEdit = () => {
-        navigate(`/products/${product.id}/edit`);
+        navigate(`/products/${product.id}/edit`, { state: { product } });
     };
 
     const handleDelete = () => {
@@ -76,9 +76,7 @@ export default function ProductDetail() {
                 <Breadcrumbs items={getBreadcrumbItems()}/>
                 <NotFoundContainer>
                     <h1>Product Not Found</h1>
-                    <h2>
-                        The product you're looking for doesn't exist or may have been removed.
-                    </h2>
+                    <h2>The product you're looking for doesn't exist or may have been removed.</h2>
                     <button onClick={handleBack}>Back to Products</button>
                 </NotFoundContainer>
             </div>
@@ -114,10 +112,6 @@ export default function ProductDetail() {
                         <InfoRow>
                             <div>Status:</div>
                             <StatusBadge status={product.status}>{product.status}</StatusBadge>
-                        </InfoRow>
-                        <InfoRow>
-                            <div>Category:</div>
-                            <div>{product.category || 'N/A'}</div>
                         </InfoRow>
                         <InfoRow>
                             <div>Product ID:</div>

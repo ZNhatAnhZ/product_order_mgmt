@@ -3,21 +3,10 @@ import styled from 'styled-components';
 import useProducts from '../hooks/useProducts.js';
 import ProductForm from '../components/ProductForm.jsx';
 import Breadcrumbs from '../components/Breadcrumbs.jsx';
+import {getIsoStringDate} from "../utils/Utils.js";
 
 const Container = styled.div`
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem;
-`;
-
-const Header = styled.div`
-    margin-bottom: 2rem;
-`;
-
-const Title = styled.h1`
-    font-size: 2rem;
-    color: #333;
-    margin: 1rem 0;
 `;
 
 export const ProductCreate = () => {
@@ -32,7 +21,7 @@ export const ProductCreate = () => {
     const handleSubmit = async (submittedData) => {
         await createProduct({
             ...submittedData,
-            createdAt: new Date().toISOString()
+            createdAt: getIsoStringDate()
         });
         navigate(`/products/${data.at(-1).id}`, {state: {product: data.at(-1)}});
     };
@@ -43,10 +32,10 @@ export const ProductCreate = () => {
 
     return (
         <Container>
-            <Header>
+            <div>
                 <Breadcrumbs items={breadcrumbItems}/>
-                <Title>Create New Product</Title>
-            </Header>
+                <h2>Create New Product</h2>
+            </div>
             <ProductForm
                 onSubmit={handleSubmit}
                 onCancel={handleCancel}

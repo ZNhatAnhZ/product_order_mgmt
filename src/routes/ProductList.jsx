@@ -61,8 +61,8 @@ export default function ProductList() {
         navigate(`/products/${productId}`, {state: {product}});
     };
 
-    const handleEditProduct = (productId) => {
-        navigate(`/products/${productId}/edit`);
+    const handleEditProduct = (productId, product) => {
+        navigate(`/products/${productId}/edit`, {state: {product}});
     };
 
     const handleDeleteProduct = (product) => {
@@ -150,8 +150,7 @@ export default function ProductList() {
                 <p>Are you sure you want to delete "{deleteModal.product?.name}"?</p>
                 <GapDiv>
                     <button onClick={() => setDeleteModal({isOpen: false, product: null})}>Cancel</button>
-                    <button onClick={confirmDelete}
-                            disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
+                    <button onClick={confirmDelete} disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
                 </GapDiv>
             </Modal>
         </div>

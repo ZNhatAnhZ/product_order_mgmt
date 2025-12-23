@@ -30,12 +30,7 @@ const ButtonContainer = styled.div`
     justify-content: flex-end;
 `;
 
-const statusOptions = [
-    {value: 'active', label: 'Active', default: true},
-    {value: 'inactive', label: 'Inactive', default: false}
-];
-
-const ProductForm = ({onSubmit, isSubmitting = false, onCancel}) => {
+const ProductForm = ({onSubmit, isSubmitting = false, onCancel, initialData}) => {
     const {
         register,
         handleSubmit,
@@ -43,10 +38,15 @@ const ProductForm = ({onSubmit, isSubmitting = false, onCancel}) => {
         formState: {errors, isValid},
     } = useForm({
         mode: 'onChange',
-        resolver: yupResolver(ProductSchema)
+        resolver: yupResolver(ProductSchema),
+        defaultValues: initialData
     });
     const watchedImage = watch('image');
     const watchedDescription = watch('description');
+    const statusOptions = [
+        {value: 'active', label: 'Active', default: initialData.status === 'active'},
+        {value: 'inactive', label: 'Inactive', default: initialData.status === 'inactive'}
+    ];
     return (
         <FormContainer>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -109,7 +109,11 @@ const ProductForm = ({onSubmit, isSubmitting = false, onCancel}) => {
                 </FormDiv>
                 <ButtonContainer>
                     <button onClick={() => onCancel()} disabled={isSubmitting}>Cancel</button>
-                    <button disabled={!isValid || isSubmitting}>{isSubmitting ? 'Creating Product...' : 'Create Product'}</button>
+                    {initialData ? (
+                        <button disabled={!isValid || isSubmitting}>{isSubmitting ? 'Updating Product...' : 'Update Product'}</button>
+                    ) : (
+                        <button disabled={!isValid || isSubmitting}>{isSubmitting ? 'Creating Product...' : 'Create Product'}</button>
+                    )}
                 </ButtonContainer>
             </form>
         </FormContainer>

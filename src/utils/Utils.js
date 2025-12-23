@@ -23,6 +23,12 @@ export const formatDate = (dateString) => {
     });
 };
 
+export const getIsoStringDate = () => {
+    const now = new Date();
+    now.setMilliseconds(0);
+    return now.toISOString();
+}
+
 export const getStockStatus = (stock) => {
     if (stock < 10) return 'low';
     if (stock <= 50) return 'medium';
