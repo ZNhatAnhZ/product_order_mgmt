@@ -122,7 +122,7 @@ export default function ProductList() {
 
     return (
         <div>
-            <div><h2>Products</h2></div>
+            <h2>Products</h2>
             <GapDiv>
                 <SearchInput
                     value={searchTerm}
@@ -146,15 +146,13 @@ export default function ProductList() {
                 isOpen={deleteModal.isOpen}
                 onClose={() => setDeleteModal({isOpen: false, product: null})}
             >
-                <div>
-                    <h3>Confirm Delete</h3>
-                    <p>Are you sure you want to delete "{deleteModal.product?.name}"?</p>
-                    <GapDiv>
-                        <button onClick={() => setDeleteModal({isOpen: false, product: null})}>Cancel</button>
-                        <button onClick={confirmDelete}
-                                disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
-                    </GapDiv>
-                </div>
+                <h3>Confirm Delete</h3>
+                <p>Are you sure you want to delete "{deleteModal.product?.name}"?</p>
+                <GapDiv>
+                    <button onClick={() => setDeleteModal({isOpen: false, product: null})}>Cancel</button>
+                    <button onClick={confirmDelete}
+                            disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
+                </GapDiv>
             </Modal>
         </div>
     );

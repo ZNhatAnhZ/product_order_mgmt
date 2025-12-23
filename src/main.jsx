@@ -6,11 +6,12 @@ import {
     RouterProvider,
 } from "react-router/dom";
 import App from "./components/App.jsx";
-import Login from "./routes/Login.jsx";
+import {Login} from "./routes/Login.jsx";
 import {Navigation} from "./routes/Navigation.jsx";
 import Dashboard from "./routes/Dashboard.jsx";
 import ProductList from "./routes/ProductList.jsx";
 import ProductDetail from "./routes/ProductDetail.jsx";
+import {ProductCreate} from "./routes/ProductCreate.jsx";
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/products/new",
-        element: <App><ProtectedRoute><div>New Product Page - Coming Soon</div></ProtectedRoute></App>,
+        element: <App><ProtectedRoute><ProductCreate/></ProtectedRoute></App>,
     },
     {
         path: "/products/:id",

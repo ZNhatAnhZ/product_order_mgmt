@@ -11,6 +11,12 @@ import {Stock} from "../components/Stock.jsx";
 const ProductContent = styled.div`
     display: flex;
     gap: 2rem;
+    justify-content: space-evenly;
+`;
+
+const ProductImage = styled.img`
+    max-width: 50em;
+    max-height: 40em;
 `;
 
 const InfoRow = styled.div`
@@ -85,7 +91,7 @@ export default function ProductDetail() {
             <ProductContent>
                 <div>
                     {product.image ? (
-                        <img
+                        <ProductImage
                             src={product.image}
                             alt={product.name}
                             onError={(e) => {

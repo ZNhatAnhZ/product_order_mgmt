@@ -26,6 +26,7 @@ const fetchProduct = async (id) => {
 };
 
 const createProduct = async (productData) => {
+    await sleep(300);
     const response = await fetch(`${API_BASE_URL}/products`, {
         method: 'POST',
         headers: {
@@ -78,9 +79,10 @@ export default function useProducts() {
 
     const createMutation = useMutation({
         mutationFn: createProduct,
-        onSuccess: () => {
+        onSuccess: (data) => {
             queryClient.invalidateQueries(['products']);
             toast.success('Product created successfully!');
+            return data;
         },
         onError: (error) => {
             toast.error(error.message || 'Failed to create product');

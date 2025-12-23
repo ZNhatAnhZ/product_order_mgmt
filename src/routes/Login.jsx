@@ -4,21 +4,17 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {UserSchema} from '../schemas/UserSchema.js';
 import {Input} from "../components/Input.jsx";
 import useAuth from '../hooks/useAuth.js';
-import styled from "styled-components";
 import {checkCredentials, sleep} from "../utils/Utils.js";
 import {toast} from "react-toastify";
+import {ErrorMessage} from "../components/ErrorMessage.jsx";
 
-const Div = styled.div`
-    color: red;
-`;
-
-const Login = () => {
-    const { login, isAuthenticated, user } = useAuth();
+export const Login = () => {
+    const { login } = useAuth();
 
     const {
         register,
         handleSubmit,
-        formState: {errors, isSubmitting, isValid, isSubmitSuccessful}
+        formState: {errors, isSubmitting, isValid}
     } = useForm({
         mode: 'onChange',
         resolver: yupResolver(UserSchema)
@@ -52,7 +48,7 @@ const Login = () => {
                     placeholder="Enter your email"
                 />
                 {errors.email && (
-                    <Div className="error-message">{errors.email.message}</Div>
+                    <ErrorMessage>{errors.email.message}</ErrorMessage>
                 )}
             </div>
 
@@ -66,7 +62,7 @@ const Login = () => {
                     placeholder="Enter your password"
                 />
                 {errors.password && (
-                    <Div className="error-message">{errors.password.message}</Div>
+                    <ErrorMessage>{errors.password.message}</ErrorMessage>
                 )}
             </div>
 
@@ -88,5 +84,3 @@ const Login = () => {
         </form>
     );
 };
-
-export default Login;

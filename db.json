@@ -159,6 +159,16 @@
       "image": "https://target.scene7.com/is/image/Target/GUEST_09c80abe-0535-4e36-8d7b-0522f7dff74a",
       "status": "active",
       "createdAt": "2025-12-23T09:15:00Z"
+    },
+    {
+      "status": "active",
+      "image": "https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg",
+      "stock": 23,
+      "price": 22.9,
+      "description": "dasdasdasdasd",
+      "name": "cvc-ota-sumr-adaptor",
+      "createdAt": "2025-12-23T10:02:33.313Z",
+      "id": 17
     }
   ],
   "orders": [
