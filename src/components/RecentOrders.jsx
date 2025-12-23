@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import {useQuery} from '@tanstack/react-query';
 import {Link} from 'react-router';
-import {getRecentOrders} from '../services/dashboardAPI.js';
 import {formatCurrency, formatDate} from "../utils/Utils.js";
 import {StatusBadge} from "./StatusBadge.jsx";
+import {getRecentOrders} from "../hooks/useDashboard.js";
 
 const TableContainer = styled.div`
     margin-top: 2rem;
@@ -39,8 +39,6 @@ const RecentOrders = () => {
         queryFn: getRecentOrders,
         refetchInterval: 2 * 60 * 1000, // Refetch every 2 minutes
     });
-
-
 
     return (
         <TableContainer>

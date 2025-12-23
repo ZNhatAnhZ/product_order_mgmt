@@ -6,11 +6,19 @@ const PaginationDiv = styled.div`
     justify-content: center;
 `;
 
-export default function Pagination({currentPage, totalPages, hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage}) {
+export default function Pagination({
+                                       totalItems,
+                                       currentFirstIndex,
+                                       currentLastIndex,
+                                       hasNextPage,
+                                       hasPreviousPage,
+                                       goToNextPage,
+                                       goToPreviousPage
+                                   }) {
     return (
         <PaginationDiv>
             <button disabled={!hasPreviousPage} onClick={() => goToPreviousPage()}>&lt;</button>
-            <div>{currentPage}/{totalPages}</div>
+            <div>Showing {currentFirstIndex}-{currentLastIndex} of {totalItems}</div>
             <button disabled={!hasNextPage} onClick={() => goToNextPage()}>&gt;</button>
         </PaginationDiv>
     );

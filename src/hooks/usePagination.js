@@ -6,6 +6,9 @@ export default function usePagination(items, itemsPerPage = 10) {
     const totalItems = items?.length || 0;
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
+    const currentFirstIndex = (currentPage - 1) * itemsPerPage + 1;
+    const currentLastIndex = Math.min(totalItems, currentPage * itemsPerPage);
+
     const currentItems = useMemo(() => {
         if (!items) return [];
 
@@ -30,6 +33,8 @@ export default function usePagination(items, itemsPerPage = 10) {
     };
 
     return {
+        currentFirstIndex,
+        currentLastIndex,
         currentItems,
         currentPage,
         totalPages,

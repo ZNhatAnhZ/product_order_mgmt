@@ -1,7 +1,8 @@
 import {Link} from "react-router";
 
 export const Navigation = () => {
-    return (<div>
+    return (
+        <div>
             <div>
                 <Link to='/login'>Login</Link>
             </div>

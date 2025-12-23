@@ -20,7 +20,7 @@
       "badge": "Pending"
     },
     "revenue": {
-      "value": 45678.90,
+      "value": 45678.9,
       "previousValue": 42150.75,
       "change": 8.4,
       "changeType": "positive",
@@ -201,7 +201,7 @@
       "currentMonth": {
         "products": 1247,
         "orders": 856,
-        "revenue": 45678.90
+        "revenue": 45678.9
       },
       "previousMonth": {
         "products": 1115,
@@ -215,4 +215,3 @@
     }
   }
 }
-

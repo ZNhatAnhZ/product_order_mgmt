@@ -3,9 +3,9 @@ import StatsCard from "../components/StatsCard.jsx";
 import RecentOrders from "../components/RecentOrders.jsx";
 import LowStockAlert from "../components/LowStockAlert.jsx";
 import {useQuery} from "@tanstack/react-query";
-import {getDashboardStats} from "../services/dashboardAPI.js";
 import styled from 'styled-components';
 import {formatCurrency} from "../utils/Utils.js";
+import {getDashboardStats} from "../hooks/useDashboard.js";
 
 const DashboardContainer = styled.div`
     padding: 1rem;

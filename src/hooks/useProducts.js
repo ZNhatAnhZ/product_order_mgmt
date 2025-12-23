@@ -1,10 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import {sleep} from "../utils/Utils.js";
 
 const API_BASE_URL = 'http://localhost:3001';
 
 // API functions
 const fetchProducts = async () => {
+    await sleep(500);
     const response = await fetch(`${API_BASE_URL}/products`);
     if (!response.ok) {
         throw new Error('Failed to fetch products');

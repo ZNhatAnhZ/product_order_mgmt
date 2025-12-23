@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router';
+import {useState, useMemo} from 'react';
+import {useNavigate} from 'react-router';
 import styled from 'styled-components';
 import useDebounce from '../hooks/useDebounce.js';
 import useProducts from '../hooks/useProducts.js';
@@ -8,6 +8,7 @@ import SearchInput from '../components/SearchInput.jsx';
 import ProductTable from '../components/ProductTable.jsx';
 import Pagination from '../components/Pagination.jsx';
 import Modal from '../components/Modal.jsx';
+import {FILTER_ACTIVE, FILTER_ALL, FILTER_INACTIVE} from "../constants/Enum.js";
 
 const GapDiv = styled.div`
     display: flex;
@@ -18,11 +19,9 @@ const GapDiv = styled.div`
 export default function ProductList() {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
-    const [statusFilter, setStatusFilter] = useState('all');
-    const [deleteModal, setDeleteModal] = useState({ isOpen: false, product: null });
-
+    const [statusFilter, setStatusFilter] = useState(FILTER_ALL);
+    const [deleteModal, setDeleteModal] = useState({isOpen: false, product: null});
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
-
     const {
         data: products,
         isLoading,
@@ -36,19 +35,18 @@ export default function ProductList() {
 
         return products.filter(product => {
             const matchesSearch = debouncedSearchTerm === '' || product.name.includes(debouncedSearchTerm);
-
-            const matchesStatus = statusFilter === 'all' ||
-                (statusFilter === 'active' && product.status === 'active') ||
-                (statusFilter === 'inactive' && product.status === 'inactive');
-
+            const matchesStatus = statusFilter === FILTER_ALL ||
+                (statusFilter === FILTER_ACTIVE && product.status === FILTER_ACTIVE) ||
+                (statusFilter === FILTER_INACTIVE && product.status === FILTER_INACTIVE);
             return matchesSearch && matchesStatus;
         });
     }, [products, debouncedSearchTerm, statusFilter]);
 
     const {
+        currentFirstIndex,
+        currentLastIndex,
         currentItems,
-        currentPage,
-        totalPages,
+        totalItems,
         hasNextPage,
         hasPreviousPage,
         goToNextPage,
@@ -68,19 +66,19 @@ export default function ProductList() {
     };
 
     const handleDeleteProduct = (product) => {
-        setDeleteModal({ isOpen: true, product });
+        setDeleteModal({isOpen: true, product});
     };
 
     const confirmDelete = async () => {
         if (deleteModal.product) {
             await deleteProduct(deleteModal.product.id);
-            setDeleteModal({ isOpen: false, product: null });
+            setDeleteModal({isOpen: false, product: null});
         }
     };
 
     const handleClearFilters = () => {
         setSearchTerm('');
-        setStatusFilter('all');
+        setStatusFilter(FILTER_ALL);
     };
 
     if (error) {
@@ -91,11 +89,40 @@ export default function ProductList() {
         );
     }
 
+    const renderProductList = () => {
+        if (isLoading) {
+            return <div>Loading products...</div>;
+        }
+
+        if (filteredProducts.length === 0) {
+            return (
+                <div>
+                    <p>No products, adding the product?</p>
+                    <button onClick={() => handleNewProduct()}>Add First Product</button>
+                </div>
+            );
+        }
+
+        return <>
+            <ProductTable
+                products={currentItems}
+                onView={handleViewProduct}
+                onEdit={handleEditProduct}
+                onDelete={handleDeleteProduct}/>
+            <Pagination
+                totalItems={totalItems}
+                currentFirstIndex={currentFirstIndex}
+                currentLastIndex={currentLastIndex}
+                goToNextPage={goToNextPage}
+                hasPreviousPage={hasPreviousPage}
+                hasNextPage={hasNextPage}
+                goToPreviousPage={goToPreviousPage}/>
+        </>;
+    }
+
     return (
         <div>
-            <div>
-                <h2>Products</h2>
-            </div>
+            <div><h2>Products</h2></div>
             <GapDiv>
                 <SearchInput
                     value={searchTerm}
@@ -111,43 +138,21 @@ export default function ProductList() {
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                 </select>
-                <button onClick={handleClearFilters}>
-                    Clear Filters
-                </button>
-                <button onClick={handleNewProduct}>
-                    New Product
-                </button>
+                <button onClick={handleClearFilters}>Clear Filters</button>
+                <button onClick={handleNewProduct}>New Product</button>
             </GapDiv>
-
-            {isLoading ? (
-                <div>Loading products...</div>
-            ) : filteredProducts.length === 0 ? null : (
-                <>
-                    <ProductTable
-                        products={currentItems}
-                        onView={handleViewProduct}
-                        onEdit={handleEditProduct}
-                        onDelete={handleDeleteProduct} />
-                    <Pagination
-                        currentPage={currentPage}
-                        goToNextPage={goToNextPage}
-                        totalPages={totalPages}
-                        hasPreviousPage={hasPreviousPage}
-                        hasNextPage={hasNextPage}
-                        goToPreviousPage={goToPreviousPage} />
-                </>
-            )}
-
+            {renderProductList()}
             <Modal
                 isOpen={deleteModal.isOpen}
-                onClose={() => setDeleteModal({ isOpen: false, product: null })}
+                onClose={() => setDeleteModal({isOpen: false, product: null})}
             >
                 <div>
                     <h3>Confirm Delete</h3>
                     <p>Are you sure you want to delete "{deleteModal.product?.name}"?</p>
                     <GapDiv>
-                        <button onClick={() => setDeleteModal({ isOpen: false, product: null })}>Cancel</button>
-                        <button onClick={confirmDelete} disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
+                        <button onClick={() => setDeleteModal({isOpen: false, product: null})}>Cancel</button>
+                        <button onClick={confirmDelete}
+                                disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
                     </GapDiv>
                 </div>
             </Modal>

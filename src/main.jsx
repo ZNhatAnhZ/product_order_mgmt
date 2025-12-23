@@ -10,7 +10,7 @@ import Login from "./routes/Login.jsx";
 import {Navigation} from "./routes/Navigation.jsx";
 import Dashboard from "./routes/Dashboard.jsx";
 import ProductList from "./routes/ProductList.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
     {

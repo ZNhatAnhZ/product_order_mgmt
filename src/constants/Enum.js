@@ -11,3 +11,7 @@ export const Credential = {
 };
 
 export const API_BASE_URL = 'http://localhost:3001';
+
+export const FILTER_ALL = 'all';
+export const FILTER_ACTIVE = 'active';
+export const FILTER_INACTIVE = 'inactive';
