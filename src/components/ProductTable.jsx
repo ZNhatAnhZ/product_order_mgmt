@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import {StatusBadge} from './StatusBadge.jsx';
 import {Link} from "react-router";
-import {formatCurrency} from "../utils/Utils.js";
+import {formatCurrency, getStockStatus} from "../utils/Utils.js";
+import {Stock} from "./Stock.jsx";
 
 const Table = styled.table`
     width: 100%;
@@ -29,30 +30,10 @@ const Description = styled.p`
     white-space: nowrap;
 `;
 
-const Stock = styled.span`
-    &.low {
-        color: #dc3545;
-    }
-
-    &.medium {
-        color: #fd7e14;
-    }
-
-    &.high {
-        color: #28a745;
-    }
-`;
-
 const ActionButtons = styled.div`
     display: flex;
     gap: 0.5em;
 `;
-
-const getStockStatus = (stock) => {
-    if (stock < 10) return 'low';
-    if (stock <= 50) return 'medium';
-    return 'high';
-};
 
 export default function ProductTable({products, onView, onEdit, onDelete}) {
     if (!products || products.length === 0) {
@@ -86,14 +67,14 @@ export default function ProductTable({products, onView, onEdit, onDelete}) {
                                 }}
                             />
                         </td>
-                        <td><Link to={`/products/${product.id}`}>{product.name}</Link></td>
+                        <td><Link to={`/products/${product.id}`} state={{product}}>{product.name}</Link></td>
                         <td><Description>{product.description || 'No description'}</Description></td>
                         <td>{formatCurrency(product.price)}</td>
                         <td><Stock className={getStockStatus(product.stock)}>{product.stock}</Stock></td>
                         <td><StatusBadge status={product.status}>{product.status}</StatusBadge></td>
                         <td>
                             <ActionButtons>
-                                <button onClick={() => onView(product.id)}>View</button>
+                                <button onClick={() => onView(product.id, product)}>View</button>
                                 <button onClick={() => onEdit(product.id)}>Edit</button>
                                 <button onClick={() => onDelete(product)}>Delete</button>
                             </ActionButtons>

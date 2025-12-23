@@ -4,7 +4,6 @@ import {sleep} from "../utils/Utils.js";
 
 const API_BASE_URL = 'http://localhost:3001';
 
-// API functions
 const fetchProducts = async () => {
     await sleep(500);
     const response = await fetch(`${API_BASE_URL}/products`);
@@ -15,8 +14,12 @@ const fetchProducts = async () => {
 };
 
 const fetchProduct = async (id) => {
+    await sleep(300);
     const response = await fetch(`${API_BASE_URL}/products/${id}`);
     if (!response.ok) {
+        if (response.status === 404) {
+            throw new Error('Product not found');
+        }
         throw new Error('Failed to fetch product');
     }
     return response.json();
@@ -63,7 +66,6 @@ const deleteProductApi = async (id) => {
 export default function useProducts() {
     const queryClient = useQueryClient();
 
-    // Get all products
     const {
         data,
         isLoading,
@@ -74,7 +76,6 @@ export default function useProducts() {
         queryFn: fetchProducts,
     });
 
-    // Create product mutation
     const createMutation = useMutation({
         mutationFn: createProduct,
         onSuccess: () => {
@@ -86,7 +87,6 @@ export default function useProducts() {
         }
     });
 
-    // Update product mutation
     const updateMutation = useMutation({
         mutationFn: updateProduct,
         onSuccess: () => {
@@ -98,7 +98,6 @@ export default function useProducts() {
         }
     });
 
-    // Delete product mutation
     const deleteMutation = useMutation({
         mutationFn: deleteProductApi,
         onSuccess: () => {

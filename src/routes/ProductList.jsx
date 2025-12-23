@@ -57,8 +57,8 @@ export default function ProductList() {
         navigate('/products/new');
     };
 
-    const handleViewProduct = (productId) => {
-        navigate(`/products/${productId}`);
+    const handleViewProduct = (productId, product) => {
+        navigate(`/products/${productId}`, {state: {product}});
     };
 
     const handleEditProduct = (productId) => {

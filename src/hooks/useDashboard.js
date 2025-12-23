@@ -47,48 +47,10 @@ export async function getProducts() {
     return await fetchData('/products');
 }
 
-export async function getOrders() {
-    return await fetchData('/orders');
-}
-
 export async function getRecentOrders() {
     const orders = await fetchData('/orders');
-    // Sort by date (newest first) and take first 5
     return orders
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .slice(0, 5);
-}
-
-export async function getPendingOrders() {
-    const orders = await fetchData('/orders');
-    return orders.filter(order => order.status === 'pending');
-}
-
-export async function getAnalytics() {
-    return await fetchData('/analytics');
-}
-
-export async function updateDashboardStats(newStats) {
-    try {
-        const response = await fetch(`${this.baseURL}/dashboard`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                stats: newStats,
-                lastUpdated: new Date().toISOString()
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error('API Error updating dashboard stats:', error);
-        throw new Error('Failed to update dashboard statistics');
-    }
 }
 

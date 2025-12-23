@@ -22,3 +22,9 @@ export const formatDate = (dateString) => {
         minute: '2-digit'
     });
 };
+
+export const getStockStatus = (stock) => {
+    if (stock < 10) return 'low';
+    if (stock <= 50) return 'medium';
+    return 'high';
+};
