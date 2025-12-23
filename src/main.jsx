@@ -9,9 +9,10 @@ import {Navigation} from "./routes/Navigation.jsx";
 import Dashboard from "./routes/Dashboard.jsx";
 import ProductList from "./routes/ProductList.jsx";
 import ProductDetail from "./routes/ProductDetail.jsx";
-import {ProductCreate} from "./routes/ProductCreate.jsx";
 import {ProductEdit} from "./routes/ProductEdit.jsx";
+import {ProductCreate} from "./routes/ProductCreate.jsx";
 import OrderList from "./routes/OrderList.jsx";
+import OrderDetail from "./routes/OrderDetail.jsx";
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
@@ -48,12 +49,8 @@ const router = createBrowserRouter([
         element: <App><ProtectedRoute><ProductEdit/></ProtectedRoute></App>,
     },
     {
-        path: "/orders",
-        element: <App><ProtectedRoute><div>Orders Page - Coming Soon</div></ProtectedRoute></App>,
-    },
-    {
         path: "/orders/:id",
-        element: <App><ProtectedRoute><div>Order Detail Page - Coming Soon</div></ProtectedRoute></App>,
+        element: <App><ProtectedRoute><OrderDetail/></ProtectedRoute></App>,
     },
     {
         path: "*",

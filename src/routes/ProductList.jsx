@@ -71,7 +71,7 @@ export default function ProductList() {
 
     const confirmDelete = async () => {
         if (deleteModal.product) {
-            await deleteProduct(deleteModal.product.id);
+            deleteProduct(deleteModal.product.id);
             setDeleteModal({isOpen: false, product: null});
         }
     };

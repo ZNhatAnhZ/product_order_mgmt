@@ -54,7 +54,7 @@ export default function ProductDetail() {
 
     const confirmDelete = async () => {
         if (product) {
-            await deleteProduct(product.id);
+            deleteProduct(product.id);
             setDeleteModal({isOpen: false});
             navigate('/products');
         }
@@ -122,17 +122,12 @@ export default function ProductDetail() {
                             <div>{formatDate(product.createdAt)}</div>
                         </InfoRow>
                     </div>
-
                     <ActionButtons>
-                        <button className="primary" onClick={handleEdit}>
-                            Edit Product
-                        </button>
+                        <button className="primary" onClick={handleEdit}>Edit Product</button>
                         <button className="danger" onClick={handleDelete} disabled={isDeleting}>
                             {isDeleting ? 'Deleting...' : 'Delete Product'}
                         </button>
-                        <button className="secondary" onClick={handleBack}>
-                            Back to Products
-                        </button>
+                        <button className="secondary" onClick={handleBack}>Back to Products</button>
                     </ActionButtons>
                 </div>
             </ProductContent>

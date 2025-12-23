@@ -1,4 +1,4 @@
-import {Credential} from "../constants/Enum.js";
+import {Credential, ORDER_STATUS} from "../constants/Enum.js";
 
 export const checkCredentials = (data) => {
     return data.email === Credential.email && data.password === Credential.password;
@@ -33,4 +33,17 @@ export const getStockStatus = (stock) => {
     if (stock < 10) return 'low';
     if (stock <= 50) return 'medium';
     return 'high';
+};
+
+export const getAvailableStatuses = (currentStatus) => {
+    switch (currentStatus) {
+        case ORDER_STATUS.PENDING:
+            return [ORDER_STATUS.PROCESSING, ORDER_STATUS.CANCELLED];
+        case ORDER_STATUS.PROCESSING:
+            return [ORDER_STATUS.COMPLETED, ORDER_STATUS.CANCELLED];
+        case ORDER_STATUS.COMPLETED:
+        case ORDER_STATUS.CANCELLED:
+        default:
+            return [];
+    }
 };

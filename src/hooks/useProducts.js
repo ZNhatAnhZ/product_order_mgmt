@@ -13,18 +13,6 @@ const fetchProducts = async () => {
     return response.json();
 };
 
-const fetchProduct = async (id) => {
-    await sleep(300);
-    const response = await fetch(`${API_BASE_URL}/products/${id}`);
-    if (!response.ok) {
-        if (response.status === 404) {
-            throw new Error('Product not found');
-        }
-        throw new Error('Failed to fetch product');
-    }
-    return response.json();
-};
-
 const createProduct = async (productData) => {
     await sleep(300);
     const response = await fetch(`${API_BASE_URL}/products`, {
@@ -71,7 +59,6 @@ export default function useProducts() {
         data,
         isLoading,
         error,
-        refetch
     } = useQuery({
         queryKey: ['products'],
         queryFn: fetchProducts,
@@ -115,7 +102,6 @@ export default function useProducts() {
         data,
         isLoading,
         error,
-        refetch,
         createProduct: createMutation.mutate,
         updateProduct: updateMutation.mutate,
         deleteProduct: deleteMutation.mutate,

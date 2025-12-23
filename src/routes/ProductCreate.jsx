@@ -19,10 +19,7 @@ export const ProductCreate = () => {
     ];
 
     const handleSubmit = async (submittedData) => {
-        await createProduct({
-            ...submittedData,
-            createdAt: getIsoStringDate()
-        });
+        createProduct({...submittedData, createdAt: getIsoStringDate()});
         navigate(`/products/${data.at(-1).id}`, {state: {product: data.at(-1)}});
     };
 

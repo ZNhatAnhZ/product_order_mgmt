@@ -29,7 +29,7 @@ export const ProductEdit = () => {
                 ...submittedData,
                 createdAt: getIsoStringDate()
             };
-            await updateProduct(submittingData);
+            updateProduct(submittingData);
             navigate(`/products/${product.id}`, { state: { product: { ...submittingData } } });
         }
     };
