@@ -86,6 +86,7 @@ export default function Dashboard() {
     return (
         <DashboardContainer>
             <DashboardHeader>
+                <h2>Dashboard</h2>
                 <button onClick={() => loadDashboard()} disabled={isRefetching}>
                     {isRefetching ? 'Đang tải...' : 'Làm mới'}
                 </button>

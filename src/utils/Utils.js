@@ -47,3 +47,7 @@ export const getAvailableStatuses = (currentStatus) => {
             return [];
     }
 };
+
+export const getFirstEmailChar = (email) => {
+    return email ? email.charAt(0).toUpperCase() : 'U';
+};

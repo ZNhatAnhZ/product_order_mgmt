@@ -5,7 +5,6 @@ import { createBrowserRouter } from "react-router";
 import {RouterProvider,} from "react-router/dom";
 import App from "./components/App.jsx";
 import {Login} from "./routes/Login.jsx";
-import {Navigation} from "./routes/Navigation.jsx";
 import Dashboard from "./routes/Dashboard.jsx";
 import ProductList from "./routes/ProductList.jsx";
 import ProductDetail from "./routes/ProductDetail.jsx";
@@ -16,10 +15,6 @@ import OrderDetail from "./routes/OrderDetail.jsx";
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App><Navigation/></App>,
-    },
     {
         path: "/login",
         element: <App><Login/></App>,

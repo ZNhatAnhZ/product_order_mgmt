@@ -99,7 +99,7 @@ export default function OrderList() {
     return (
         <Container>
             <div>
-                <h1>Orders</h1>
+                <h2>Orders</h2>
                 <div>{totalItems} {totalItems === 1 ? 'order' : 'orders'} total</div>
             </div>
             <GapDiv>
