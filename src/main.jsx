@@ -3,7 +3,7 @@ import {createRoot} from 'react-dom/client'
 import './assets/index.css'
 import { createBrowserRouter } from "react-router";
 import {RouterProvider,} from "react-router/dom";
-import App from "./components/App.jsx";
+import App from "./components/layout/App.jsx";
 import {Login} from "./routes/Login.jsx";
 import Dashboard from "./routes/Dashboard.jsx";
 import ProductList from "./routes/ProductList.jsx";
@@ -12,7 +12,7 @@ import {ProductEdit} from "./routes/ProductEdit.jsx";
 import {ProductCreate} from "./routes/ProductCreate.jsx";
 import OrderList from "./routes/OrderList.jsx";
 import OrderDetail from "./routes/OrderDetail.jsx";
-import ProtectedRoute from "./routes/ProtectedRoute.jsx";
+import ProtectedRoute from "./components/route/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -54,7 +54,5 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-    <StrictMode>
-        <RouterProvider router={router}/>
-    </StrictMode>,
+    <StrictMode><RouterProvider router={router}/></StrictMode>,
 )

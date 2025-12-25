@@ -1,10 +1,10 @@
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import styled from 'styled-components';
-import {ProductSchema} from '../schemas/ProductSchema.js';
-import {FormInput} from './FormInput.jsx';
-import {FormTextarea} from './FormTextarea.jsx';
-import {FormSelect} from './FormSelect.jsx';
+import {ProductSchema} from '../../schemas/ProductSchema.js';
+import {FormInput} from '../common/FormInput.jsx';
+import {FormTextarea} from '../common/FormTextarea.jsx';
+import {FormSelect} from '../common/FormSelect.jsx';
 
 const FormContainer = styled.div`
     padding: 2em;

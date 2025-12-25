@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import useDebounce from '../hooks/useDebounce.js';
 import useProducts from '../hooks/useProducts.js';
 import usePagination from '../hooks/usePagination.js';
-import SearchInput from '../components/SearchInput.jsx';
-import ProductTable from '../components/ProductTable.jsx';
-import Pagination from '../components/Pagination.jsx';
-import Modal from '../components/Modal.jsx';
+import SearchInput from '../components/common/SearchInput.jsx';
+import ProductTable from '../components/product/ProductTable.jsx';
+import Pagination from '../components/common/Pagination.jsx';
+import Modal from '../components/common/Modal.jsx';
 import {PRODUCT_STATUS} from "../constants/Enum.js";
 
 const GapDiv = styled.div`

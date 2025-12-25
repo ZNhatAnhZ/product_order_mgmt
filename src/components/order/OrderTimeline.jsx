@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { formatDate } from '../utils/Utils.js';
+import { formatDate } from '../../utils/Utils.js';
 
 const TimelineContainer = styled.div`
     border: 0.1em solid #e9ecef;

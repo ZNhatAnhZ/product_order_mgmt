@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { formatCurrency } from '../utils/Utils.js';
+import { formatCurrency } from '../../utils/Utils.js';
 
 const SummaryContainer = styled.div`
     border: 1px solid #e9ecef;

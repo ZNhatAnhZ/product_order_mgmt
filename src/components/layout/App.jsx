@@ -1,6 +1,6 @@
 import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
 import {ToastContainer} from "react-toastify";
-import {AuthProvider} from "../contexts/AuthContextProvider.jsx";
+import {AuthProvider} from "../../contexts/AuthContextProvider.jsx";
 import React from "react";
 import Layout from "./Layout.jsx";
 

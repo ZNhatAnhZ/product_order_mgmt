@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import useDebounce from '../hooks/useDebounce.js';
 import useOrders from '../hooks/useOrders.js';
 import usePagination from '../hooks/usePagination.js';
-import SearchInput from '../components/SearchInput.jsx';
-import OrderTable from '../components/OrderTable.jsx';
-import Pagination from '../components/Pagination.jsx';
+import SearchInput from '../components/common/SearchInput.jsx';
+import OrderTable from '../components/order/OrderTable.jsx';
+import Pagination from '../components/common/Pagination.jsx';
 import {ORDER_STATUS} from '../constants/Enum.js';
 
 const Container = styled.div`

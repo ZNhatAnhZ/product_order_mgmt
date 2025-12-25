@@ -34,8 +34,6 @@ export function AuthProvider({children}) {
     };
 
     return (
-        <AuthContext value={contextValue}>
-            {children}
-        </AuthContext>
+        <AuthContext value={contextValue}>{children}</AuthContext>
     );
 }

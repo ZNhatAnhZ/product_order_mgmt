@@ -1,5 +1,5 @@
 import Card from "./Card.jsx";
-import {StatusBadge} from "./StatusBadge.jsx";
+import {StatusBadge} from "../common/StatusBadge.jsx";
 
 export default function StatsCard({icon, title, description, change, isWarning}) {
     return <Card>

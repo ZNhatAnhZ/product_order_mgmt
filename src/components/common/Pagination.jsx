@@ -4,6 +4,7 @@ const PaginationDiv = styled.div`
     display: flex;
     margin: 0.5em 0.5em 0 0;
     justify-content: center;
+    gap: 0.5em
 `;
 
 export default function Pagination({

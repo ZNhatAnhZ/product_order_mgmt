@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import {useQuery} from '@tanstack/react-query';
 import {Link} from 'react-router';
-import {formatCurrency, formatDate} from "../utils/Utils.js";
-import {StatusBadge} from "./StatusBadge.jsx";
-import {getRecentOrders} from "../hooks/useDashboard.js";
+import {formatCurrency, formatDate} from "../../utils/Utils.js";
+import {StatusBadge} from "../common/StatusBadge.jsx";
+import {getRecentOrders} from "../../hooks/useDashboard.js";
 
 const TableContainer = styled.div`
     margin-top: 2rem;

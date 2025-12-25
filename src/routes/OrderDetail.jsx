@@ -1,11 +1,11 @@
 import {useNavigate, useLocation} from 'react-router';
 import styled from 'styled-components';
-import Breadcrumbs from '../components/Breadcrumbs.jsx';
-import {StatusBadge} from '../components/StatusBadge.jsx';
-import OrderItems from '../components/OrderItems.jsx';
-import OrderSummary from '../components/OrderSummary.jsx';
-import StatusUpdateDropdown from '../components/StatusUpdateDropdown.jsx';
-import OrderTimeline from '../components/OrderTimeline.jsx';
+import Breadcrumbs from '../components/common/Breadcrumbs.jsx';
+import {StatusBadge} from '../components/common/StatusBadge.jsx';
+import OrderItems from '../components/order/OrderItems.jsx';
+import OrderSummary from '../components/order/OrderSummary.jsx';
+import StatusUpdateDropdown from '../components/order/StatusUpdateDropdown.jsx';
+import OrderTimeline from '../components/order/OrderTimeline.jsx';
 import {formatDate, getIsoStringDate} from '../utils/Utils.js';
 import useOrders from "../hooks/useOrders.js";
 import {useState} from "react";

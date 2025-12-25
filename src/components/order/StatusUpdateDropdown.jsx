@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import styled from 'styled-components';
-import Modal from './Modal.jsx';
-import {getAvailableStatuses} from "../utils/Utils.js";
+import Modal from '../common/Modal.jsx';
+import {getAvailableStatuses} from "../../utils/Utils.js";
 
 const StatusSection = styled.div`
     border: 1px solid #e9ecef;

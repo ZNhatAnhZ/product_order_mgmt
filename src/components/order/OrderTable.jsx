@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {Link} from 'react-router';
-import { StatusBadge } from './StatusBadge.jsx';
-import {formatCurrency, formatDate} from "../utils/Utils.js";
+import { StatusBadge } from '../common/StatusBadge.jsx';
+import {formatCurrency, formatDate} from "../../utils/Utils.js";
 
 const Table = styled.table`
     width: 100%;
@@ -14,6 +14,7 @@ const TableHeader = styled.thead`
 
 const TableCell = styled.td`
     padding: 1em;
+    text-align: center;
 `;
 
 export default function OrderTable({ orders = [], onView }) {

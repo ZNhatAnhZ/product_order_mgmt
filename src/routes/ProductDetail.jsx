@@ -2,11 +2,11 @@ import {useState} from 'react';
 import {useNavigate, useLocation} from 'react-router';
 import styled from 'styled-components';
 import useProducts from '../hooks/useProducts.js';
-import Breadcrumbs from '../components/Breadcrumbs.jsx';
-import {StatusBadge} from '../components/StatusBadge.jsx';
-import Modal from '../components/Modal.jsx';
+import Breadcrumbs from '../components/common/Breadcrumbs.jsx';
+import {StatusBadge} from '../components/common/StatusBadge.jsx';
+import Modal from '../components/common/Modal.jsx';
 import {formatCurrency, formatDate, getStockStatus} from "../utils/Utils.js";
-import {Stock} from "../components/Stock.jsx";
+import {Stock} from "../components/product/Stock.jsx";
 
 const ProductContent = styled.div`
     display: flex;

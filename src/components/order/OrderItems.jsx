@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {formatCurrency} from '../utils/Utils.js';
+import {formatCurrency} from '../../utils/Utils.js';
 
 const Table = styled.table`
     width: 100%;

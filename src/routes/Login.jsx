@@ -2,11 +2,11 @@ import React from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {UserSchema} from '../schemas/UserSchema.js';
-import {Input} from "../components/Input.jsx";
+import {Input} from "../components/common/Input.jsx";
 import useAuth from '../hooks/useAuth.js';
 import {checkCredentials, sleep} from "../utils/Utils.js";
 import {toast} from "react-toastify";
-import {ErrorMessage} from "../components/ErrorMessage.jsx";
+import {ErrorMessage} from "../components/common/ErrorMessage.jsx";
 
 export const Login = () => {
     const { login } = useAuth();

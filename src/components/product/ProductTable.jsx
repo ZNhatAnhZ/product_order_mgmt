@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {StatusBadge} from './StatusBadge.jsx';
+import {StatusBadge} from '../common/StatusBadge.jsx';
 import {Link} from "react-router";
-import {formatCurrency, getStockStatus} from "../utils/Utils.js";
+import {formatCurrency, getStockStatus} from "../../utils/Utils.js";
 import {Stock} from "./Stock.jsx";
 
 const Table = styled.table`

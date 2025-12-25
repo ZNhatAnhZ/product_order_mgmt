@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {useQuery} from '@tanstack/react-query';
 import Card from "./Card.jsx";
 import {Link} from "react-router";
-import {getProducts} from "../hooks/useDashboard.js";
+import {getProducts} from "../../hooks/useDashboard.js";
 
 const AlertContainer = styled.div`
     margin-top: 2rem;
