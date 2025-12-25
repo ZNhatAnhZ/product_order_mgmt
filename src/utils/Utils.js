@@ -1,7 +1,7 @@
-import {Credential, ORDER_STATUS} from "../constants/Enum.js";
+import {ADMIN_CREDENTIAL, ORDER_STATUS} from "../constants/Enum.js";
 
 export const checkCredentials = (data) => {
-    return data.email === Credential.email && data.password === Credential.password;
+    return data.email === ADMIN_CREDENTIAL.email && data.password === ADMIN_CREDENTIAL.password;
 }
 
 export const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

@@ -1,11 +1,11 @@
-export const UserKey = "UserKey";
+export const USER_KEY = "UserKey";
 
-export const DefaultUser = {
+export const DEFAULT_USER = {
     email: null,
     isAuthenticated: false,
 };
 
-export const Credential = {
+export const ADMIN_CREDENTIAL = {
     email: 'admin@example.com',
     password: 'admin123'
 };
