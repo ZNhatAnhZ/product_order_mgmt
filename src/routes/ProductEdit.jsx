@@ -47,7 +47,7 @@ export const ProductEdit = () => {
             <div>
                 <Breadcrumbs items={getBreadcrumbItems()}/>
                 <Container>
-                    <h1>Product Not Found</h1>
+                    <h2>Product Not Found</h2>
                     <h2>The product you're looking for doesn't exist or may have been removed.</h2>
                     <button onClick={handleBack}>Back to Products</button>
                 </Container>

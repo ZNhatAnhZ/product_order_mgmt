@@ -1,8 +1,6 @@
 import React from 'react';
 import {AppBar, Toolbar, IconButton, Box, Avatar,} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {useNavigate} from 'react-router';
 import styled from 'styled-components';
 import useAuth from '../../hooks/useAuth.js';
@@ -21,6 +19,7 @@ const StyledToolbar = styled(Toolbar)`
 const LeftSection = styled(Box)`
     display: flex !important;
     align-items: center !important;
+    gap: 1em !important;
 `;
 
 const RightSection = styled(Box)`
@@ -41,7 +40,7 @@ const StyledAvatar = styled(Avatar)`
     font-size: 0.875rem !important;
 `;
 
-export default function Header({onToggleSidebar, onToggleMobileMenu, sidebarCollapsed}) {
+export default function Header({onToggleMobileMenu}) {
     const {logout, isAuthenticated, user} = useAuth();
     const navigate = useNavigate();
     const handleLogout = () => {
@@ -53,11 +52,8 @@ export default function Header({onToggleSidebar, onToggleMobileMenu, sidebarColl
         <StyledAppBar>
             <StyledToolbar>
                 <LeftSection>
-                    <IconButton onClick={onToggleMobileMenu} sx={{display: {xs: 'block', md: 'none'}}}>
+                    <IconButton onClick={onToggleMobileMenu} sx={{display: {xs: 'flex', md: 'none'}}}>
                         <MenuIcon/>
-                    </IconButton>
-                    <IconButton onClick={onToggleSidebar} sx={{display: {xs: 'none', md: 'block'}}}>
-                        {sidebarCollapsed ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
                     </IconButton>
                     <h3>ProductOrderMgmt</h3>
                 </LeftSection>

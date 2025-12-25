@@ -24,12 +24,7 @@ const ContentDiv = styled.div`
 `
 
 export default function Layout({children}) {
-    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-    const toggleSidebar = () => {
-        setSidebarCollapsed(!sidebarCollapsed);
-    };
 
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
@@ -41,9 +36,9 @@ export default function Layout({children}) {
 
     return (
         <LayoutDiv>
-            <Header onToggleSidebar={toggleSidebar} onToggleMobileMenu={toggleMobileMenu} sidebarCollapsed={sidebarCollapsed}/>
+            <Header onToggleMobileMenu={toggleMobileMenu}/>
             <FlexDiv>
-                <Sidebar collapsed={sidebarCollapsed} mobileOpen={mobileMenuOpen} onClose={closeMobileMenu}/>
+                <Sidebar mobileOpen={mobileMenuOpen} onClose={closeMobileMenu}/>
                 <ContentDiv>{children}</ContentDiv>
             </FlexDiv>
             <Footer/>

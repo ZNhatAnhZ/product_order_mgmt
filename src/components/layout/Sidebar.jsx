@@ -38,12 +38,10 @@ const navItems = [
     }
 ];
 
-export default function Sidebar({collapsed, mobileOpen, onClose}) {
+export default function Sidebar({mobileOpen, onClose}) {
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md')); // <768px
-    const isTablet = useMediaQuery(theme.breakpoints.between('md', 'lg')); // 768-1024px
-    const isDesktop = useMediaQuery(theme.breakpoints.up('lg')); // >1024px
-    const showOnlyIcons = (isTablet && !isMobile) || (isDesktop && collapsed);
+    const isMobile = useMediaQuery(theme.breakpoints.down('md')); // mobile: <768px
+    const showOnlyIcons = useMediaQuery(theme.breakpoints.between('md', 'lg')); // tablets: 768px - 1024px
 
     const drawerContent = (
         <List disablePadding>

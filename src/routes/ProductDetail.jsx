@@ -75,7 +75,7 @@ export default function ProductDetail() {
             <div>
                 <Breadcrumbs items={getBreadcrumbItems()}/>
                 <NotFoundContainer>
-                    <h1>Product Not Found</h1>
+                    <h2>Product Not Found</h2>
                     <h2>The product you're looking for doesn't exist or may have been removed.</h2>
                     <button onClick={handleBack}>Back to Products</button>
                 </NotFoundContainer>
@@ -101,7 +101,7 @@ export default function ProductDetail() {
                 </div>
 
                 <div>
-                    <h1>{product.name}</h1>
+                    <h2>{product.name}</h2>
                     <h2>{formatCurrency(product.price)}</h2>
                     <p>{product.description}</p>
                     <div>

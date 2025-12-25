@@ -86,7 +86,7 @@ export default function OrderDetail() {
             <Container>
                 <Breadcrumbs items={getBreadcrumbItems()}/>
                 <div>
-                    <h1>Order Not Found</h1>
+                    <h2>Order Not Found</h2>
                     <p>The order you're looking for doesn't exist or may have been removed.</p>
                     <button onClick={handleBack}>Back to Orders</button>
                 </div>
@@ -105,7 +105,7 @@ export default function OrderDetail() {
     return (
         <Container>
             <Breadcrumbs items={getBreadcrumbItems()}/>
-            <h1>Order detail</h1>
+            <h2>Order detail</h2>
             <MainContent>
                 <LeftColumn>
                     <InfoCard>

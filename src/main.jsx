@@ -13,6 +13,7 @@ import {ProductCreate} from "./routes/ProductCreate.jsx";
 import OrderList from "./routes/OrderList.jsx";
 import OrderDetail from "./routes/OrderDetail.jsx";
 import ProtectedRoute from "./components/route/ProtectedRoute.jsx";
+import NotFound from "./routes/NotFound.jsx";
 
 const router = createBrowserRouter([
     {
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
     },
     {
         path: "*",
-        element: <App><p>There's nothing here: 404!</p></App>,
+        element: <App><NotFound/></App>,
     }
 ]);
 
