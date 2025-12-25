@@ -5,7 +5,7 @@ export default function NotFound() {
     const navigate = useNavigate();
 
     const handleGoToDashboard = () => {
-        navigate('/dashboard');
+        navigate('/dashboard', { viewTransition: true });
     };
 
     return (

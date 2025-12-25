@@ -44,8 +44,8 @@ const ProductForm = ({onSubmit, isSubmitting = false, onCancel, initialData}) =>
     const watchedImage = watch('image');
     const watchedDescription = watch('description');
     const statusOptions = [
-        {value: 'active', label: 'Active', default: initialData.status === 'active'},
-        {value: 'inactive', label: 'Inactive', default: initialData.status === 'inactive'}
+        {value: 'active', label: 'Active', default: !initialData || initialData?.status === 'active'},
+        {value: 'inactive', label: 'Inactive', default: initialData?.status === 'inactive'}
     ];
     return (
         <FormContainer>

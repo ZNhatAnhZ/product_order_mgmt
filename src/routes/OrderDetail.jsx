@@ -68,7 +68,7 @@ export default function OrderDetail() {
     } = useOrders();
 
     const handleBack = () => {
-        navigate('/orders');
+        navigate('/orders', { viewTransition: true });
     };
 
     const handlePrint = () => {

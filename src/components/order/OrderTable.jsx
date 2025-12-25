@@ -38,7 +38,7 @@ export default function OrderTable({ orders = [], onView }) {
                 {orders.map((order) => (
                     <tr key={order.id}>
                         <TableCell>
-                            <Link to={`/orders/${order.id}`} state={{order}}>{order.id}</Link>
+                            <Link viewTransition to={`/orders/${order.id}`} state={{order}}>{order.id}</Link>
                         </TableCell>
                         <TableCell>{order.customerName}</TableCell>
                         <TableCell>{formatDate(order.createdAt)}</TableCell>

@@ -67,7 +67,7 @@ const LowStockAlert = () => {
                 <div>
                     {lowStockProducts.map(product => (
                         <Card key={product.id}>
-                            <Link to={`/products/${product.id}`}>#{product.id}</Link>
+                            <Link viewTransition to={`/products/${product.id}`}>#{product.id}</Link>
                             <div>tên sản phẩm: {product.name}</div>
                             <div>category: {product.category}</div>
                             {product.stock < 5 ? <div style={{color: 'red'}}>stock: {product.stock}</div> : <div>stock: {product.stock}</div>}

@@ -2,17 +2,17 @@ import {API_BASE_URL} from "../constants/Enum.js";
 import {sleep} from "../utils/Utils.js";
 
 export async function fetchData(endpoint) {
+    await sleep(500);
+    let response = null;
     try {
-        await sleep(500);
-        const response = await fetch(`${API_BASE_URL}${endpoint}`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
+        response = await fetch(`${API_BASE_URL}${endpoint}`);
     } catch (error) {
-        console.error(`API Error fetching ${endpoint}:`, error);
-        throw new Error(`Failed to fetch data from ${endpoint}`);
+        throw new Error(`Network error while fetching data from ${endpoint}: ${error.message}`);
     }
+    if (!response.ok) {
+        throw new Error(`Failed to fetch data from ${endpoint} with http error code: ${response.status}`);
+    }
+    return await response.json();
 }
 
 export async function getDashboardStats() {

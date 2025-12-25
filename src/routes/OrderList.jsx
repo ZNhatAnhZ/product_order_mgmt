@@ -59,7 +59,7 @@ export default function OrderList() {
     } = usePagination(filteredOrders, 10);
 
     const handleViewOrder = (orderId, order) => {
-        navigate(`/orders/${orderId}`, {state: {order}});
+        navigate(`/orders/${orderId}`, {state: {order}, viewTransition: true });
     };
 
     if (error) {

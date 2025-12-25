@@ -45,7 +45,7 @@ export default function Header({onToggleMobileMenu}) {
     const navigate = useNavigate();
     const handleLogout = () => {
         logout();
-        navigate('/login');
+        navigate('/login', { viewTransition: true });
     };
 
     return (
@@ -65,7 +65,7 @@ export default function Header({onToggleMobileMenu}) {
                             <p>{user.email}</p>
                             <button onClick={handleLogout}>Logout</button>
                         </UserSection>
-                    ) : (<button onClick={() => navigate('/login')}>Login</button>)}
+                    ) : (<button onClick={() => navigate('/login', { viewTransition: true })}>Login</button>)}
                 </RightSection>
             </StyledToolbar>
         </StyledAppBar>

@@ -54,15 +54,15 @@ export default function ProductList() {
     } = usePagination(filteredProducts, 10);
 
     const handleNewProduct = () => {
-        navigate('/products/new');
+        navigate('/products/new', { viewTransition: true });
     };
 
     const handleViewProduct = (productId, product) => {
-        navigate(`/products/${productId}`, {state: {product}});
+        navigate(`/products/${productId}`, {state: {product}, viewTransition: true });
     };
 
     const handleEditProduct = (productId, product) => {
-        navigate(`/products/${productId}/edit`, {state: {product}});
+        navigate(`/products/${productId}/edit`, {state: {product}, viewTransition: true });
     };
 
     const handleDeleteProduct = (product) => {

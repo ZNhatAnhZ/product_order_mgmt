@@ -4,12 +4,13 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {UserSchema} from '../schemas/UserSchema.js';
 import {Input} from "../components/common/Input.jsx";
 import useAuth from '../hooks/useAuth.js';
-import {checkCredentials, sleep} from "../utils/Utils.js";
-import {toast} from "react-toastify";
 import {ErrorMessage} from "../components/common/ErrorMessage.jsx";
+import {useLocation, useNavigate} from "react-router";
 
 export const Login = () => {
-    const { login } = useAuth();
+    const {login} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const {
         register,
@@ -21,18 +22,13 @@ export const Login = () => {
     });
 
     const onSubmit = async (data) => {
-        console.log('Login form data:', data);
-
-        if (checkCredentials(data)) {
-            await sleep(1000);
-            const userData = {
-                email: data.email,
-                rememberMe: data.rememberMe
-            };
-            login(userData);
-            toast.success('Logged in successfully!');
-        } else {
-            toast.error('Invalid email or password.');
+        const userData = {
+            email: data.email,
+            rememberMe: data.rememberMe,
+            password: data.password,
+        };
+        if (await login(userData)) {
+            navigate(location.state?.from, {viewTransition: true});
         }
     };
 
@@ -47,40 +43,26 @@ export const Login = () => {
                     {...register('email')}
                     placeholder="Enter your email"
                 />
-                {errors.email && (
-                    <ErrorMessage>{errors.email.message}</ErrorMessage>
-                )}
+                {errors.email && (<ErrorMessage>{errors.email.message}</ErrorMessage>)}
             </div>
 
             <div>
                 <label htmlFor="password">Password</label>
-                <input
+                <Input
                     id="password"
                     type="password"
                     {...register('password')}
-                    className={errors.password ? 'error' : ''}
                     placeholder="Enter your password"
                 />
-                {errors.password && (
-                    <ErrorMessage>{errors.password.message}</ErrorMessage>
+                {errors.password && (<ErrorMessage>{errors.password.message}</ErrorMessage>
                 )}
             </div>
-
             <div>
-                <label>
-                    <input
-                        type="checkbox"
-                        {...register('rememberMe')}
-                    />
-                    Remember me
-                </label>
+                <input id='rememberMe' type="checkbox" {...register('rememberMe')}/>
+                <label htmlFor="rememberMe">Remember me</label>
             </div>
-
-            <button
-                type="submit"
-                disabled={isSubmitting || !isValid}>
-                {isSubmitting ? 'Logging in...' : 'Submit'}
-            </button>
+            <button type="submit"
+                    disabled={isSubmitting || !isValid}>{isSubmitting ? 'Logging in...' : 'Submit'}</button>
         </form>
     );
 };

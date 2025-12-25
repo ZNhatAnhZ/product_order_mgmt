@@ -30,7 +30,7 @@ export default function Breadcrumbs({ items }) {
                 <span key={index}>
                     {index > 0 && <BreadcrumbSeparator> &gt; </BreadcrumbSeparator>}
                     {item.href ?
-                        (<BreadcrumbLink to={item.href} state={{product: item.product}}>{item.label}</BreadcrumbLink>) :
+                        (<BreadcrumbLink viewTransition to={item.href} state={{product: item.product}}>{item.label}</BreadcrumbLink>) :
                         (<BreadcrumbCurrent>{item.label}</BreadcrumbCurrent>)}
                 </span>
             ))}

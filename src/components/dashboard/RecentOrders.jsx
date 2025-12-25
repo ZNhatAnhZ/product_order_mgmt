@@ -37,14 +37,13 @@ const RecentOrders = () => {
     const { data: orders, isLoading, error } = useQuery({
         queryKey: ['recentOrders'],
         queryFn: getRecentOrders,
-        refetchInterval: 2 * 60 * 1000, // Refetch every 2 minutes
     });
 
     return (
         <TableContainer>
             <TableHeader>
                 <h2>Đơn hàng gần nhất</h2>
-                <Link to="/orders">View All Orders →</Link>
+                <Link viewTransition to="/orders">View All Orders →</Link>
             </TableHeader>
 
             {isLoading && <div>Đang tải</div>}
@@ -77,7 +76,7 @@ const RecentOrders = () => {
                         {orders.map(order => (
                             <tr key={order.id}>
                                 <td>
-                                    <Link to={`/orders/${order.id}`}>#{order.id}</Link>
+                                    <Link viewTransition to={`/orders/${order.id}`}>#{order.id}</Link>
                                 </td>
                                 <td>{order.customerName}</td>
                                 <td>{formatCurrency(order.total)}</td>

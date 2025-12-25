@@ -67,7 +67,7 @@ export default function ProductTable({products, onView, onEdit, onDelete}) {
                                 }}
                             />
                         </td>
-                        <td><Link to={`/products/${product.id}`} state={{product}}>{product.name}</Link></td>
+                        <td><Link viewTransition to={`/products/${product.id}`} state={{product}}>{product.name}</Link></td>
                         <td><Description>{product.description || 'No description'}</Description></td>
                         <td>{formatCurrency(product.price)}</td>
                         <td><Stock className={getStockStatus(product.stock)}>{product.stock}</Stock></td>

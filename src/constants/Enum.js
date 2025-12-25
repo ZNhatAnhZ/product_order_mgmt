@@ -7,7 +7,7 @@ export const DefaultUser = {
 
 export const Credential = {
     email: 'admin@example.com',
-        password: 'admin123'
+    password: 'admin123'
 };
 
 export const API_BASE_URL = 'http://localhost:3001';

@@ -30,16 +30,16 @@ export const ProductEdit = () => {
                 createdAt: getIsoStringDate()
             };
             updateProduct(submittingData);
-            navigate(`/products/${product.id}`, { state: { product: { ...submittingData } } });
+            navigate(`/products/${product.id}`, { state: { product: { ...submittingData } }, viewTransition: true });
         }
     };
 
     const handleCancel = () => {
-        navigate('/products');
+        navigate('/products', { viewTransition: true });
     };
 
     const handleBack = () => {
-        navigate('/products');
+        navigate('/products', { viewTransition: true });
     };
 
     if (!product) {

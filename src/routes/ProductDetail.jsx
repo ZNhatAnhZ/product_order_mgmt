@@ -45,7 +45,7 @@ export default function ProductDetail() {
     const [deleteModal, setDeleteModal] = useState({isOpen: false});
 
     const handleEdit = () => {
-        navigate(`/products/${product.id}/edit`, { state: { product } });
+        navigate(`/products/${product.id}/edit`, { state: { product }, viewTransition: true });
     };
 
     const handleDelete = () => {
@@ -56,12 +56,12 @@ export default function ProductDetail() {
         if (product) {
             deleteProduct(product.id);
             setDeleteModal({isOpen: false});
-            navigate('/products');
+            navigate('/products', { viewTransition: true });
         }
     };
 
     const handleBack = () => {
-        navigate('/products');
+        navigate('/products', { viewTransition: true });
     };
 
     const getBreadcrumbItems = () => [

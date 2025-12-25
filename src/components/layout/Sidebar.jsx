@@ -47,7 +47,7 @@ export default function Sidebar({mobileOpen, onClose}) {
         <List disablePadding>
             {navItems.map(item =>
                 <ListItem key={item.path}>
-                    <NavLink to={item.path}>{item.icon} {showOnlyIcons ? null : item.text}</NavLink>
+                    <NavLink viewTransition to={item.path}>{item.icon} {showOnlyIcons ? null : item.text}</NavLink>
                 </ListItem>)
             }
         </List>

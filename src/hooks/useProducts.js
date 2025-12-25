@@ -1,53 +1,75 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import {sleep} from "../utils/Utils.js";
-
-const API_BASE_URL = 'http://localhost:3001';
+import {API_BASE_URL} from "../constants/Enum.js";
 
 const fetchProducts = async () => {
     await sleep(500);
-    const response = await fetch(`${API_BASE_URL}/products`);
+    const url = `${API_BASE_URL}/products`;
+    let response = null;
+    try {
+        response = await fetch(url);
+    } catch (error) {
+        throw new Error(`Network error while fetching data from ${url}: ${error.message}`);
+    }
     if (!response.ok) {
-        throw new Error('Failed to fetch products');
+        throw new Error(`Failed to fetch data from ${url} with http error code: ${response.status}`);
     }
     return response.json();
 };
 
 const createProduct = async (productData) => {
     await sleep(300);
-    const response = await fetch(`${API_BASE_URL}/products`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(productData),
-    });
+    const url = `${API_BASE_URL}/products`;
+    let response = null;
+    try {
+        response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productData),
+        });
+    } catch (error) {
+        throw new Error(`Network error while fetching data from ${url}: ${error.message}`);
+    }
     if (!response.ok) {
-        throw new Error('Failed to create product');
+        throw new Error(`Failed to fetch data from ${url} with http error code: ${response.status}`);
+
     }
     return response.json();
 };
 
 const updateProduct = async ({ id, ...productData }) => {
-    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(productData),
-    });
+    const url = `${API_BASE_URL}/products/${id}`;
+    let response = null;
+    try {
+        response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productData),
+        });
+    } catch (error) {
+        throw new Error(`Network error while fetching data from ${url}: ${error.message}`);
+    }
     if (!response.ok) {
-        throw new Error('Failed to update product');
+        throw new Error(`Failed to fetch data from ${url} with http error code: ${response.status}`);
     }
     return response.json();
 };
 
 const deleteProductApi = async (id) => {
-    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
-        method: 'DELETE',
-    });
+    const url = `${API_BASE_URL}/products/${id}`;
+    let response = null;
+    try {
+        response = await fetch(url, {method: 'DELETE'});
+    } catch (error) {
+        throw new Error(`Network error while fetching data from ${url}: ${error.message}`);
+    }
     if (!response.ok) {
-        throw new Error('Failed to delete product');
+        throw new Error(`Failed to fetch data from ${url} with http error code: ${response.status}`);
     }
     return true;
 };
