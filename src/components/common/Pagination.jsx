@@ -7,15 +7,8 @@ const PaginationDiv = styled.div`
     gap: 0.5em
 `;
 
-export default function Pagination({
-                                       totalItems,
-                                       currentFirstIndex,
-                                       currentLastIndex,
-                                       hasNextPage,
-                                       hasPreviousPage,
-                                       goToNextPage,
-                                       goToPreviousPage
-                                   }) {
+export default function Pagination({totalItems, currentFirstIndex, currentLastIndex, hasNextPage, hasPreviousPage,
+                                       goToNextPage, goToPreviousPage}) {
     return (
         <PaginationDiv>
             <button disabled={!hasPreviousPage} onClick={() => goToPreviousPage()}>&lt;</button>

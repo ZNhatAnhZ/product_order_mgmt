@@ -28,7 +28,7 @@ export default function Breadcrumbs({ items }) {
         <BreadcrumbContainer>
             {items.map((item, index) => (
                 <span key={index}>
-                    {index > 0 && <BreadcrumbSeparator> &gt; </BreadcrumbSeparator>}
+                    {index > 0 && <BreadcrumbSeparator>&gt; </BreadcrumbSeparator>}
                     {item.href ?
                         (<BreadcrumbLink viewTransition to={item.href} state={{product: item.product}}>{item.label}</BreadcrumbLink>) :
                         (<BreadcrumbCurrent>{item.label}</BreadcrumbCurrent>)}

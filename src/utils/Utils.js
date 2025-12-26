@@ -1,4 +1,5 @@
 import {ADMIN_CREDENTIAL, ORDER_STATUS} from "../constants/Enum.js";
+import {format} from "date-fns";
 
 export const checkCredentials = (data) => {
     return data.email === ADMIN_CREDENTIAL.email && data.password === ADMIN_CREDENTIAL.password;
@@ -14,13 +15,7 @@ export const formatCurrency = (amount) => {
 };
 
 export const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('vi-VN', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
+    return format(new Date(dateString), "HH:MM MM/dd/yyyy");
 };
 
 export const getIsoStringDate = () => {

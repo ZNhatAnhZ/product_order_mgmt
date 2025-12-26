@@ -1,7 +1,7 @@
 import {useNavigate} from 'react-router';
 import styled from 'styled-components';
 import useProducts from '../hooks/useProducts.js';
-import ProductForm from '../components/product/ProductForm.jsx';
+import {ProductForm} from '../components/product/ProductForm.jsx';
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx';
 import {getIsoStringDate} from "../utils/Utils.js";
 

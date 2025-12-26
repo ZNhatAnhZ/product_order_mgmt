@@ -20,7 +20,7 @@ const AlertHeader = styled.div`
     gap: 0.5rem;
 `;
 
-const LowStockAlert = () => {
+export const LowStockAlert = () => {
     const {data: products, isLoading, error} = useQuery({
         queryKey: ['products'],
         queryFn: getProducts,
@@ -32,7 +32,7 @@ const LowStockAlert = () => {
         return (
             <AlertContainer>
                 <AlertHeader>
-                    <div>Cảnh báo tồn kho thấp</div>
+                    <h2>Cảnh báo tồn kho thấp</h2>
                     <div>đang tải</div>
                 </AlertHeader>
             </AlertContainer>
@@ -43,20 +43,16 @@ const LowStockAlert = () => {
         return (
             <AlertContainer>
                 <AlertHeader>
-                    <div>Cảnh báo tồn kho thấp</div>
+                    <h2>Cảnh báo tồn kho thấp</h2>
                 </AlertHeader>
-                <div>
-                    Lỗi khi tải danh sách sản phẩm: {error.message}
-                </div>
+                <div>Lỗi khi tải danh sách sản phẩm: {error.message}</div>
             </AlertContainer>
         );
     }
 
     return (
         <AlertContainer>
-            <AlertHeader>
-                <div>Cảnh báo tồn kho thấp</div>
-            </AlertHeader>
+            <AlertHeader><h2>Cảnh báo tồn kho thấp</h2></AlertHeader>
 
             {lowStockProducts.length === 0 ? (
                 <div>
@@ -67,11 +63,10 @@ const LowStockAlert = () => {
                 <div>
                     {lowStockProducts.map(product => (
                         <Card key={product.id}>
-                            <Link viewTransition to={`/products/${product.id}`}>#{product.id}</Link>
+                            <Link viewTransition to={`/products/${product.id}`} state={{product}}>#{product.id}</Link>
                             <div>tên sản phẩm: {product.name}</div>
                             <div>category: {product.category}</div>
                             {product.stock < 5 ? <div style={{color: 'red'}}>stock: {product.stock}</div> : <div>stock: {product.stock}</div>}
-
                         </Card>
                     ))}
                 </div>
@@ -79,5 +74,3 @@ const LowStockAlert = () => {
         </AlertContainer>
     );
 };
-
-export default LowStockAlert;

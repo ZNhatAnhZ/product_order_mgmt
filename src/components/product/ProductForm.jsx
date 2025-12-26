@@ -8,8 +8,6 @@ import {FormSelect} from '../common/FormSelect.jsx';
 
 const FormContainer = styled.div`
     padding: 2em;
-    border-radius: 0.3em;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const FormDiv = styled.div`
@@ -30,7 +28,7 @@ const ButtonContainer = styled.div`
     justify-content: flex-end;
 `;
 
-const ProductForm = ({onSubmit, isSubmitting = false, onCancel, initialData}) => {
+export const ProductForm = ({onSubmit, isSubmitting = false, onCancel, initialData}) => {
     const {
         register,
         handleSubmit,
@@ -119,5 +117,3 @@ const ProductForm = ({onSubmit, isSubmitting = false, onCancel, initialData}) =>
         </FormContainer>
     );
 };
-
-export default ProductForm;

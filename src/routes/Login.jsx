@@ -28,13 +28,13 @@ export const Login = () => {
             password: data.password,
         };
         if (await login(userData)) {
-            navigate(location.state?.from, {viewTransition: true});
+            navigate(location.state?.from || '/dashboard', {viewTransition: true});
         }
     };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <h2>Login</h2>
+            <h1>Login</h1>
             <div>
                 <label htmlFor="email">Email</label>
                 <Input
@@ -61,8 +61,7 @@ export const Login = () => {
                 <input id='rememberMe' type="checkbox" {...register('rememberMe')}/>
                 <label htmlFor="rememberMe">Remember me</label>
             </div>
-            <button type="submit"
-                    disabled={isSubmitting || !isValid}>{isSubmitting ? 'Logging in...' : 'Submit'}</button>
+            <button type="submit" disabled={isSubmitting || !isValid}>{isSubmitting ? 'Logging in...' : 'Submit'}</button>
         </form>
     );
 };

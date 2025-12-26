@@ -7,13 +7,7 @@ const RadioContainer = styled.div`
     gap: 1rem;
 `;
 
-export const FormSelect = ({
-                               label,
-                               name,
-                               options = [],
-                               required = false,
-                               error,
-                           }) => {
+export const FormSelect = ({label, name, options = [], required = false, error}) => {
     return (
         <div>
             <InputLabel className={required ? 'required' : ''}>{label}</InputLabel>

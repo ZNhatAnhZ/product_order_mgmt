@@ -2,19 +2,19 @@ import styled from 'styled-components';
 import { formatCurrency } from '../../utils/Utils.js';
 
 const SummaryContainer = styled.div`
-    border: 1px solid #e9ecef;
+    border: 0.1em solid #e9ecef;
     padding: 1em;
 `;
 
 const SummaryRow = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 0;
+    padding: 0.5em 0;
 `;
 
 const TotalValue = styled.span`
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.3em;
 `;
 
 export default function OrderSummary({ items = [], shippingFee = 0 }) {

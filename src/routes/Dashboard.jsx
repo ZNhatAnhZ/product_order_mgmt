@@ -1,11 +1,16 @@
 import React from 'react';
 import StatsCard from "../components/dashboard/StatsCard.jsx";
-import RecentOrders from "../components/dashboard/RecentOrders.jsx";
-import LowStockAlert from "../components/dashboard/LowStockAlert.jsx";
+import {RecentOrders} from "../components/dashboard/RecentOrders.jsx";
+import {LowStockAlert} from "../components/dashboard/LowStockAlert.jsx";
 import {useQuery} from "@tanstack/react-query";
 import styled from 'styled-components';
 import {formatCurrency} from "../utils/Utils.js";
 import {getDashboardStats} from "../hooks/useDashboard.js";
+import {FaBox} from "react-icons/fa";
+import {IoHourglass} from "react-icons/io5";
+import {TbPigMoney} from "react-icons/tb";
+import {FcStatistics} from "react-icons/fc";
+import {ErrorMessage} from "../components/common/ErrorMessage";
 
 const DashboardContainer = styled.div`
     padding: 1rem;
@@ -18,20 +23,15 @@ const DashboardHeader = styled.div`
     margin-bottom: 2rem;
 `;
 
-
 const StatsGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    justify-content: space-evenly;
     gap: 1rem;
 `;
 
 const CenterNotice = styled.div`
     padding: 2rem;
     text-align: center;
-`;
-
-const ErrorText = styled.p`
-    color: red;
 `;
 
 const LastUpdated = styled.div`
@@ -60,72 +60,53 @@ export default function Dashboard() {
     };
 
     if (loading) {
-        return (
-            <CenterNotice>
-                <p>Đang tải dữ liệu dashboard...</p>
-            </CenterNotice>
-        );
+        return (<CenterNotice><p>Đang tải dữ liệu dashboard...</p></CenterNotice>);
     }
 
     if (error) {
-        return (
-            <CenterNotice>
-                <ErrorText>Lỗi: {error.message}</ErrorText>
-            </CenterNotice>
-        );
+        return (<CenterNotice><ErrorMessage>Lỗi: {error.message}</ErrorMessage></CenterNotice>);
     }
 
     if (!dashboardData) {
-        return (
-            <CenterNotice>
-                <p>Không có dữ liệu</p>
-            </CenterNotice>
-        );
+        return (<CenterNotice><p>Không có dữ liệu</p></CenterNotice>);
     }
 
     return (
         <DashboardContainer>
             <DashboardHeader>
-                <h2>Dashboard</h2>
+                <h1>Dashboard</h1>
                 <button onClick={() => loadDashboard()} disabled={isRefetching}>
                     {isRefetching ? 'Đang tải...' : 'Làm mới'}
                 </button>
             </DashboardHeader>
             <StatsGrid>
                 <StatsCard
-                    icon={'📦'}
+                    icon={<FaBox />}
                     title={'Total Products'}
                     description={`Số lượng sản phẩm: ${dashboardData.totalProducts.value}`}
                     change={formatChange(dashboardData.totalProducts.change, dashboardData.totalProducts.changeType)}
                 />
-
                 <StatsCard
-                    icon={'📊'}
+                    icon={<FcStatistics />}
                     title={'Total Orders'}
                     description={`Số lượng đơn hàng: ${dashboardData.totalOrders.value}`}
                     change={formatChange(dashboardData.totalOrders.change, dashboardData.totalOrders.changeType)}
                 />
-
                 <StatsCard
                     isWarning={true}
-                    icon={'⏳'}
+                    icon={<IoHourglass />}
                     title={'Pending Orders'}
                     description={`Số đơn hàng chờ xử lý: ${dashboardData.pendingOrders.value}`}
                 />
-
                 <StatsCard
-                    icon={'💰'}
+                    icon={<TbPigMoney />}
                     title={'Revenue'}
                     description={`Tổng doanh thu: ${formatCurrency(dashboardData.revenue.value)}`}
                 />
             </StatsGrid>
+            {dashboardData.lastUpdated && (<LastUpdated>Cập nhật lần cuối: {dashboardData.lastUpdated}</LastUpdated>)}
             <RecentOrders />
             <LowStockAlert />
-            {dashboardData.lastUpdated && (
-                <LastUpdated>
-                    Cập nhật lần cuối: {dashboardData.lastUpdated}
-                </LastUpdated>
-            )}
         </DashboardContainer>
     );
 };

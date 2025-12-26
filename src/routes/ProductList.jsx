@@ -82,11 +82,7 @@ export default function ProductList() {
     };
 
     if (error) {
-        return (
-            <div>
-                <div>Error loading products: {error.message}</div>
-            </div>
-        );
+        return <div>Error loading products: {error.message}</div>;
     }
 
     const renderProductList = () => {
@@ -123,7 +119,7 @@ export default function ProductList() {
     return (
         <div>
             <div>
-                <h2>Products</h2>
+                <h1>Products</h1>
                 <div>{totalItems} {totalItems === 1 ? 'product' : 'products'} total</div>
             </div>
             <GapDiv>
@@ -153,8 +149,7 @@ export default function ProductList() {
                 <p>Are you sure you want to delete "{deleteModal.product?.name}"?</p>
                 <GapDiv>
                     <button onClick={() => setDeleteModal({isOpen: false, product: null})}>Cancel</button>
-                    <button onClick={confirmDelete}
-                            disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
+                    <button onClick={confirmDelete} disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
                 </GapDiv>
             </Modal>
         </div>

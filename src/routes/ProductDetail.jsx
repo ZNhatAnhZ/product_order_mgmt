@@ -101,7 +101,7 @@ export default function ProductDetail() {
                 </div>
 
                 <div>
-                    <h2>{product.name}</h2>
+                    <h1>{product.name}</h1>
                     <h2>{formatCurrency(product.price)}</h2>
                     <p>{product.description}</p>
                     <div>

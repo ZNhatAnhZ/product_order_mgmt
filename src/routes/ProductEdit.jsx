@@ -1,7 +1,7 @@
 import {useNavigate, useLocation} from 'react-router';
 import styled from 'styled-components';
 import useProducts from '../hooks/useProducts.js';
-import ProductForm from '../components/product/ProductForm.jsx';
+import {ProductForm} from '../components/product/ProductForm.jsx';
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx';
 import {getIsoStringDate} from "../utils/Utils.js";
 
@@ -68,7 +68,7 @@ export const ProductEdit = () => {
         <Container>
             <div>
                 <Breadcrumbs items={getBreadcrumbItems()} />
-                <h2>Edit Product</h2>
+                <h1>Edit Product</h1>
             </div>
             <ProductForm
                 onSubmit={handleSubmit}

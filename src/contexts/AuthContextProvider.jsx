@@ -43,7 +43,5 @@ export function AuthProvider({children}) {
         user: user?.isAuthenticated ? user : localUser?.isAuthenticated ? localUser : null,
     };
 
-    return (
-        <AuthContext value={contextValue}>{children}</AuthContext>
-    );
+    return (<AuthContext value={contextValue}>{children}</AuthContext>);
 }

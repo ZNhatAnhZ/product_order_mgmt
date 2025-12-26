@@ -20,13 +20,7 @@ const MainContent = styled.div`
     gap: 2em;
 `;
 
-const LeftColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-`;
-
-const RightColumn = styled.div`
+const DivColumn = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -86,7 +80,7 @@ export default function OrderDetail() {
             <Container>
                 <Breadcrumbs items={getBreadcrumbItems()}/>
                 <div>
-                    <h2>Order Not Found</h2>
+                    <h1>Order Not Found</h1>
                     <p>The order you're looking for doesn't exist or may have been removed.</p>
                     <button onClick={handleBack}>Back to Orders</button>
                 </div>
@@ -105,9 +99,9 @@ export default function OrderDetail() {
     return (
         <Container>
             <Breadcrumbs items={getBreadcrumbItems()}/>
-            <h2>Order detail</h2>
+            <h1>Order detail</h1>
             <MainContent>
-                <LeftColumn>
+                <DivColumn>
                     <InfoCard>
                         <CardTitle>Order Information</CardTitle>
                         <InfoRow>
@@ -153,20 +147,22 @@ export default function OrderDetail() {
                     <InfoCard>
                         <OrderItems items={order.items}/>
                     </InfoCard>
+                </DivColumn>
+                <DivColumn>
+                    <OrderSummary items={order.items} shippingFee={order.shippingFee}/>
+                    <OrderTimeline order={order}/>
+                </DivColumn>
+                <DivColumn>
                     <StatusUpdateDropdown
                         currentStatus={order.status}
                         onUpdateStatus={getOnUpdateStatus()}
                         isUpdating={isUpdating}
                     />
-                </LeftColumn>
-                <RightColumn>
-                    <OrderSummary items={order.items} shippingFee={order.shippingFee}/>
-                    <OrderTimeline order={order}/>
                     <ActionButtons>
                         <button onClick={handleBack}>Back to Orders</button>
                         <button onClick={handlePrint}>Print Order</button>
                     </ActionButtons>
-                </RightColumn>
+                </DivColumn>
             </MainContent>
         </Container>
     );

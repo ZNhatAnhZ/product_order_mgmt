@@ -21,8 +21,7 @@ export default function SearchInput({
                 disabled={disabled}
                 {...props}
             />
-            <span> </span>
-            {isSearching ? (<span>Searching...</span>) : null}
+            {isSearching ? (<span> Searching...</span>) : null}
         </div>
     );
 }

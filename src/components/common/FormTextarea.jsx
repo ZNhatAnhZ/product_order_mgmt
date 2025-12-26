@@ -27,16 +27,7 @@ const FlexDiv = styled.div`
     align-items: center;
 `;
 
-export const FormTextarea = ({
-                                 label,
-                                 name,
-                                 placeholder,
-                                 required = false,
-                                 error,
-                                 maxLength,
-                                 value = '',
-                                 ...props
-                             }) => {
+export const FormTextarea = ({label, name, placeholder, required = false, error, maxLength, value = '', ...props}) => {
     return (
         <div>
             <InputLabel htmlFor={name} className={required ? 'required' : ''}>{label}</InputLabel>

@@ -26,44 +26,40 @@ export default function OrderItems({items}) {
         return <div>No items in this order.</div>;
     }
 
-    return (<div>
+    return (
+        <div>
             <h3>Order Items</h3>
             <Table>
                 <thead>
-                <tr>
-                    <TableHeader>Product</TableHeader>
-                    <TableHeader>Name</TableHeader>
-                    <TableHeader>Quantity</TableHeader>
-                    <TableHeader>Price</TableHeader>
-                    <TableHeader>Subtotal</TableHeader>
-                </tr>
+                    <tr>
+                        <TableHeader>Product</TableHeader>
+                        <TableHeader>Name</TableHeader>
+                        <TableHeader>Quantity</TableHeader>
+                        <TableHeader>Price</TableHeader>
+                        <TableHeader>Subtotal</TableHeader>
+                    </tr>
                 </thead>
                 <tbody>
-                {items.map((item) => {
-                    const subtotal = item.quantity * item.price;
-                    return (<tr key={item.productId}>
+                    {items.map((item) => {
+                        const subtotal = item.quantity * item.price;
+                        return (<tr key={item.productId}>
                             <TableCell>
-                                {item.productImage ? (<ProductImage
+                                {item.productImage ? (
+                                    <ProductImage
                                         src={item.productImage}
                                         alt={item.productName}
-                                        onError={(e) => {
-                                            e.target.style.display = 'none';
-                                        }}
-                                    />) : null}
+                                        onError={(e) => e.target.style.display = 'none'}
+                                    />
+                                ) : null}
                             </TableCell>
-                            <TableCell>
-                                <div>{item.productName}</div>
-                            </TableCell>
+                            <TableCell>{item.productName}</TableCell>
                             <TableCell>{item.quantity}</TableCell>
-                            <TableCell>
-                                <div>{formatCurrency(item.price)}</div>
-                            </TableCell>
-                            <TableCell>
-                                <div>{formatCurrency(subtotal)}</div>
-                            </TableCell>
+                            <TableCell>{formatCurrency(item.price)}</TableCell>
+                            <TableCell>{formatCurrency(subtotal)}</TableCell>
                         </tr>);
-                })}
+                    })}
                 </tbody>
             </Table>
-        </div>);
+        </div>
+    );
 }

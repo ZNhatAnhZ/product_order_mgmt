@@ -7,24 +7,23 @@ import {StatusBadge} from "../common/StatusBadge.jsx";
 import {getRecentOrders} from "../../hooks/useDashboard.js";
 
 const TableContainer = styled.div`
-    margin-top: 2rem;
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    border: 1px solid #e2e8f0;
+    margin-top: 1em;
+    border-radius: 1em;
+    padding: 1em;
+    border: 0.1em solid #e2e8f0;
 `;
 
 const TableHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1em;
 `;
 
 const Table = styled.table`
     width: 100%;
     th, td {
-        text-align: left;
+        text-align: center;
     }
 `;
 
@@ -33,7 +32,7 @@ const CenterNotice = styled.div`
     text-align: center;
 `;
 
-const RecentOrders = () => {
+export const RecentOrders = () => {
     const { data: orders, isLoading, error } = useQuery({
         queryKey: ['recentOrders'],
         queryFn: getRecentOrders,
@@ -45,46 +44,27 @@ const RecentOrders = () => {
                 <h2>Đơn hàng gần nhất</h2>
                 <Link viewTransition to="/orders">View All Orders →</Link>
             </TableHeader>
-
             {isLoading && <div>Đang tải</div>}
-
-            {error && (
-                <div>
-                    Lỗi khi tải danh sách đơn hàng: {error.message}
-                </div>
-            )}
-
-            {orders && orders.length === 0 && (
-                <CenterNotice>
-                    <div>📦</div>
-                    <div>Chưa có đơn hàng nào</div>
-                </CenterNotice>
-            )}
-
+            {error && (<div>Lỗi khi tải danh sách đơn hàng: {error.message}</div>)}
+            {orders && orders.length === 0 && (<CenterNotice><div>Chưa có đơn hàng nào</div></CenterNotice>)}
             {orders && orders.length > 0 && (
                 <Table>
                     <thead>
                         <tr>
                             <th>Order ID</th>
                             <th>Customer Name</th>
-                            <th className="mobile-hide">Total Amount</th>
+                            <th>Total Amount</th>
                             <th>Status</th>
-                            <th className="mobile-hide">Date</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         {orders.map(order => (
                             <tr key={order.id}>
-                                <td>
-                                    <Link viewTransition to={`/orders/${order.id}`}>#{order.id}</Link>
-                                </td>
+                                <td><Link viewTransition to={`/orders/${order.id}`}>#{order.id}</Link></td>
                                 <td>{order.customerName}</td>
                                 <td>{formatCurrency(order.total)}</td>
-                                <td>
-                                    <StatusBadge $status={order.status}>
-                                        {order.status}
-                                    </StatusBadge>
-                                </td>
+                                <td><StatusBadge $status={order.status}>{order.status}</StatusBadge></td>
                                 <td>{formatDate(order.createdAt)}</td>
                             </tr>
                         ))}
@@ -94,8 +74,6 @@ const RecentOrders = () => {
         </TableContainer>
     );
 };
-
-export default RecentOrders;
 
 
 
