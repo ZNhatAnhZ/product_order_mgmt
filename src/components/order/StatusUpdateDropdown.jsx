@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import styled from 'styled-components';
-import Modal from '../common/Modal.jsx';
+import {Modal, ModalActions} from '../common/Modal.jsx';
 import {getAvailableStatuses} from "../../utils/Utils.js";
 
 const StatusSection = styled.div`
@@ -11,12 +11,6 @@ const StatusSection = styled.div`
 const StatusRow = styled.div`
     display: flex;
     gap: 1em;
-`;
-
-const ModalActions = styled.div`
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
 `;
 
 export default function StatusUpdateDropdown({currentStatus, onUpdateStatus, isUpdating}) {

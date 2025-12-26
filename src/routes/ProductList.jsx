@@ -7,7 +7,7 @@ import usePagination from '../hooks/usePagination.js';
 import SearchInput from '../components/common/SearchInput.jsx';
 import ProductTable from '../components/product/ProductTable.jsx';
 import Pagination from '../components/common/Pagination.jsx';
-import Modal from '../components/common/Modal.jsx';
+import {Modal, ModalActions} from '../components/common/Modal.jsx';
 import {PRODUCT_STATUS} from "../constants/Enum.js";
 
 const GapDiv = styled.div`
@@ -141,16 +141,13 @@ export default function ProductList() {
                 <button onClick={handleNewProduct}>New Product</button>
             </GapDiv>
             {renderProductList()}
-            <Modal
-                isOpen={deleteModal.isOpen}
-                onClose={() => setDeleteModal({isOpen: false, product: null})}
-            >
+            <Modal isOpen={deleteModal.isOpen} onClose={() => setDeleteModal({isOpen: false, product: null})}>
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete "{deleteModal.product?.name}"?</p>
-                <GapDiv>
+                <ModalActions>
                     <button onClick={() => setDeleteModal({isOpen: false, product: null})}>Cancel</button>
                     <button onClick={confirmDelete} disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
-                </GapDiv>
+                </ModalActions>
             </Modal>
         </div>
     );

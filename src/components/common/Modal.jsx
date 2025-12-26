@@ -1,6 +1,7 @@
 import '../../assets/modal.css';
+import styled from "styled-components";
 
-export default function Modal({ isOpen, onClose, children }) {
+export function Modal({ isOpen, onClose, children }) {
     if (!isOpen) {
         return null;
     }
@@ -13,4 +14,10 @@ export default function Modal({ isOpen, onClose, children }) {
             </div>
         </div>
     );
-};
+}
+
+export const ModalActions = styled.div`
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+`;

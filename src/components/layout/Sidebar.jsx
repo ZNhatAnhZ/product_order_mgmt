@@ -13,6 +13,7 @@ const StyledDrawer = styled(Drawer)(({theme, collapsed, variant}) => ({
         position: 'sticky',
         width: variant === 'permanent' ? (collapsed ? COLLAPSED_WIDTH : DRAWER_WIDTH) : DRAWER_WIDTH,
         backgroundColor: '#dedede',
+        zIndex: theme.zIndex.appBar - 1,
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,

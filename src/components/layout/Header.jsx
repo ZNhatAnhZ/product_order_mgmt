@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {AppBar, Toolbar, IconButton, Box, Avatar,} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useNavigate} from 'react-router';
 import styled from 'styled-components';
 import useAuth from '../../hooks/useAuth.js';
 import {getFirstEmailChar} from "../../utils/Utils.js";
+import {Modal, ModalActions} from "../common/Modal";
 
 const StyledAppBar = styled(AppBar)`
     background-color: #fff !important;
@@ -42,10 +43,14 @@ const StyledAvatar = styled(Avatar)`
 
 export default function Header({onToggleMobileMenu}) {
     const {logout, isAuthenticated, user} = useAuth();
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
     const navigate = useNavigate();
     const handleLogout = () => {
         logout();
         navigate('/login', { viewTransition: true });
+    };
+    const handleCancel = () => {
+        setShowConfirmModal(false);
     };
 
     return (
@@ -63,10 +68,19 @@ export default function Header({onToggleMobileMenu}) {
                         <UserSection>
                             <StyledAvatar>{getFirstEmailChar(user.email)}</StyledAvatar>
                             <p>{user.email}</p>
-                            <button onClick={handleLogout}>Logout</button>
+                            <button onClick={() => setShowConfirmModal(true)}>Logout</button>
                         </UserSection>
                     ) : (<button onClick={() => navigate('/login', { viewTransition: true })}>Login</button>)}
                 </RightSection>
+
+                <Modal isOpen={showConfirmModal} onClose={handleCancel}>
+                    <h3>Confirm Logout</h3>
+                    <p>Are you sure you want to log out?</p>
+                    <ModalActions>
+                        <button onClick={handleCancel}>Cancel</button>
+                        <button onClick={handleLogout}>Logout</button>
+                    </ModalActions>
+                </Modal>
             </StyledToolbar>
         </StyledAppBar>
     );

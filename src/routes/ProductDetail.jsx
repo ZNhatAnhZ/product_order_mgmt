@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import useProducts from '../hooks/useProducts.js';
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx';
 import {StatusBadge} from '../components/common/StatusBadge.jsx';
-import Modal from '../components/common/Modal.jsx';
+import {Modal, ModalActions} from '../components/common/Modal.jsx';
 import {formatCurrency, formatDate, getStockStatus} from "../utils/Utils.js";
 import {Stock} from "../components/product/Stock.jsx";
 
@@ -132,19 +132,14 @@ export default function ProductDetail() {
                 </div>
             </ProductContent>
 
-            <Modal
-                isOpen={deleteModal.isOpen}
-                onClose={() => setDeleteModal({isOpen: false})}
-            >
-                <div>
-                    <h3>Confirm Delete</h3>
-                    <p>Are you sure you want to delete "{product.name}"?</p>
-                    <p>This action cannot be undone.</p>
-                    <ActionButtons>
-                        <button onClick={() => setDeleteModal({isOpen: false})}>Cancel</button>
-                        <button onClick={confirmDelete} disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
-                    </ActionButtons>
-                </div>
+            <Modal isOpen={deleteModal.isOpen} onClose={() => setDeleteModal({isOpen: false})}>
+                <h3>Confirm Delete</h3>
+                <p>Are you sure you want to delete "{product.name}"?</p>
+                <p>This action cannot be undone.</p>
+                <ModalActions>
+                    <button onClick={() => setDeleteModal({isOpen: false})}>Cancel</button>
+                    <button onClick={confirmDelete} disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
+                </ModalActions>
             </Modal>
         </div>
     );
