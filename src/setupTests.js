@@ -1,6 +1,11 @@
 require('@testing-library/jest-dom');
 
-jest.mock('./utils/Utils.js');
+global.fetch = jest.fn();
+
+jest.mock('./utils/Utils', () => ({
+    ...jest.requireActual('./utils/Utils'),
+    checkCredentials: jest.fn(),
+}));
 
 jest.mock('react-toastify', () => ({
     toast: {

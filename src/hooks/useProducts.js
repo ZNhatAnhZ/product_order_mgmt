@@ -60,7 +60,7 @@ const updateProduct = async ({ id, ...productData }) => {
     return response.json();
 };
 
-const deleteProductApi = async (id) => {
+const deleteProduct = async (id) => {
     const url = `${API_BASE_URL}/products/${id}`;
     let response = null;
     try {
@@ -110,7 +110,7 @@ export default function useProducts() {
     });
 
     const deleteMutation = useMutation({
-        mutationFn: deleteProductApi,
+        mutationFn: deleteProduct,
         onSuccess: () => {
             queryClient.invalidateQueries(['products']);
             toast.success('Product deleted successfully!');

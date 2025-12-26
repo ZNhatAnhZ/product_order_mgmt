@@ -1,13 +1,12 @@
 import {renderHook, act, waitFor} from '@testing-library/react';
 import {AuthProvider} from '../contexts/AuthContextProvider.jsx';
 import useAuth from '../hooks/useAuth.js';
-import * as Utils from '../utils/Utils.js';
 import {toast} from 'react-toastify';
+import * as Utils from "../utils/Utils";
 
 describe('useAuth Hook', () => {
     beforeEach(() => {
         jest.clearAllMocks();
-        Utils.sleep.mockResolvedValue();
     });
 
     const wrapper = ({children}) => <AuthProvider>{children}</AuthProvider>;
