@@ -8,7 +8,7 @@ export const StatusBadge = styled.span`
     text-transform: capitalize;
     
     ${props => {
-        const statusOrVariant = props.variant || props.status;
+        const statusOrVariant = props.$variant || props.$status;
         
         switch (statusOrVariant) {
             case 'success':

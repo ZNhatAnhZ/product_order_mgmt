@@ -81,7 +81,7 @@ const RecentOrders = () => {
                                 <td>{order.customerName}</td>
                                 <td>{formatCurrency(order.total)}</td>
                                 <td>
-                                    <StatusBadge status={order.status}>
+                                    <StatusBadge $status={order.status}>
                                         {order.status}
                                     </StatusBadge>
                                 </td>

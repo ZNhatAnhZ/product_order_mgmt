@@ -63,7 +63,7 @@ export default function Sidebar({mobileOpen, onClose}) {
     }
 
     return (
-        <StyledDrawer variant="permanent" collapsed={showOnlyIcons} sx={{display: {xs: 'none', md: 'block'}}}>
+        <StyledDrawer variant="permanent" collapsed={showOnlyIcons ? 1 : 0} sx={{display: {xs: 'none', md: 'block'}}}>
             {drawerContent}
         </StyledDrawer>
     );

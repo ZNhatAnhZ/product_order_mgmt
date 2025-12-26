@@ -111,7 +111,7 @@ export default function ProductDetail() {
                         </InfoRow>
                         <InfoRow>
                             <div>Status:</div>
-                            <StatusBadge status={product.status}>{product.status}</StatusBadge>
+                            <StatusBadge $status={product.status}>{product.status}</StatusBadge>
                         </InfoRow>
                         <InfoRow>
                             <div>Product ID:</div>

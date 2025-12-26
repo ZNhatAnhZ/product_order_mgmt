@@ -71,7 +71,7 @@ export default function ProductTable({products, onView, onEdit, onDelete}) {
                         <td><Description>{product.description || 'No description'}</Description></td>
                         <td>{formatCurrency(product.price)}</td>
                         <td><Stock className={getStockStatus(product.stock)}>{product.stock}</Stock></td>
-                        <td><StatusBadge status={product.status}>{product.status}</StatusBadge></td>
+                        <td><StatusBadge $status={product.status}>{product.status}</StatusBadge></td>
                         <td>
                             <ActionButtons>
                                 <button onClick={() => onView(product.id, product)}>View</button>

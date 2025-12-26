@@ -9,34 +9,32 @@ const TimelineContainer = styled.div`
 const TimelineList = styled.ul`
     list-style: none;
     padding: 0;
-    margin: 0;
     position: relative;
     
     &:before {
         content: '';
         position: absolute;
-        left: 15px;
-        top: 0;
+        left: 1em;
+        top: 0.1em;
         bottom: 0;
-        width: 2px;
+        width: 0.1em;
         background-color: #e9ecef;
     }
 `;
 
 const TimelineItem = styled.li`
     position: relative;
-    padding: 0 0 1rem 2.5rem;
+    padding: 0 0 1em 2.5em;
     
     &:before {
         content: '';
         position: absolute;
-        left: 9px;
-        top: 4px;
-        width: 12px;
-        height: 12px;
+        left: 0.5em;
+        width: 0.8em;
+        height: 0.8em;
         border-radius: 50%;
         background-color: ${props => {
-            switch (props.status) {
+            switch (props.$status) {
                 case 'pending': return '#ffc107';
                 case 'processing': return '#17a2b8';
                 case 'completed': return '#28a745';
@@ -44,9 +42,9 @@ const TimelineItem = styled.li`
                 default: return '#6c757d';
             }
         }};
-        border: 2px solid white;
-        box-shadow: 0 0 0 2px ${props => {
-            switch (props.status) {
+        border: 0.2em solid white;
+        box-shadow: 0 0 0 0.1em ${props => {
+            switch (props.$status) {
                 case 'pending': return '#ffc107';
                 case 'processing': return '#17a2b8';
                 case 'completed': return '#28a745';
@@ -123,7 +121,7 @@ export default function OrderTimeline({ order }) {
             <h3>Order Timeline</h3>
             <TimelineList>
                 {timeline.map((item) => (
-                    <TimelineItem key={item.status} status={item.status}>
+                    <TimelineItem key={item.status} $status={item.status}>
                         <TimelineContent>
                             <div>{formatDate(item.date)}</div>
                             <div>{item.description}</div>

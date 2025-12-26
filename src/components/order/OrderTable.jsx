@@ -44,7 +44,7 @@ export default function OrderTable({ orders = [], onView }) {
                         <TableCell>{formatDate(order.createdAt)}</TableCell>
                         <TableCell>{formatCurrency(order.total)}</TableCell>
                         <TableCell>
-                            <StatusBadge variant={order.status}>
+                            <StatusBadge $variant={order.status}>
                                 {order.status ? order.status.charAt(0).toUpperCase() + order.status.slice(1) : 'Unknown'}
                             </StatusBadge>
                         </TableCell>

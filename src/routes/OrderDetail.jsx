@@ -120,7 +120,7 @@ export default function OrderDetail() {
                         </InfoRow>
                         <InfoRow>
                             <InfoLabel>Status:</InfoLabel>
-                            <StatusBadge status={order.status}>{order.status}</StatusBadge>
+                            <StatusBadge $status={order.status}>{order.status}</StatusBadge>
                         </InfoRow>
                         <InfoRow>
                             <InfoLabel>Last Updated:</InfoLabel>
