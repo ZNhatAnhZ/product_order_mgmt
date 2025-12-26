@@ -9,6 +9,9 @@ import OrderTable from '../components/order/OrderTable.jsx';
 import Pagination from '../components/common/Pagination.jsx';
 import {ORDER_STATUS} from '../constants/Enum.js';
 import {SkeletonWrapper} from "../components/common/SkeletonWrapper";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import {Button} from "@mui/material";
 
 const Container = styled.div`
     max-width: 120em;
@@ -26,6 +29,8 @@ export default function OrderList() {
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState(ORDER_STATUS.ALL);
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
 
     const {
         data: orders,
@@ -39,14 +44,16 @@ export default function OrderList() {
         return orders
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .filter(order => {
+                const orderDate = new Date(order.createdAt);
                 const matchesSearch = debouncedSearchTerm === '' ||
                     order.id.toString().includes(debouncedSearchTerm) ||
                     order.customerName.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
                 const matchesStatus = statusFilter === ORDER_STATUS.ALL ||
                     order.status === statusFilter;
-                return matchesSearch && matchesStatus;
+                const matchesDate = (!startDate || !endDate) || (orderDate >= startDate && orderDate <= endDate);
+                return matchesSearch && matchesStatus && matchesDate;
             });
-    }, [orders, debouncedSearchTerm, statusFilter]);
+    }, [orders, debouncedSearchTerm, statusFilter, startDate, endDate]);
 
     const {
         currentFirstIndex,
@@ -61,6 +68,13 @@ export default function OrderList() {
 
     const handleViewOrder = (orderId, order) => {
         navigate(`/orders/${orderId}`, {state: {order}, viewTransition: true });
+    };
+
+    const handleClearFilters = () => {
+        setSearchTerm('');
+        setStatusFilter(ORDER_STATUS.ALL);
+        setStartDate(null);
+        setEndDate(null);
     };
 
     if (error) {
@@ -116,6 +130,18 @@ export default function OrderList() {
                     <option value={ORDER_STATUS.COMPLETED}>Completed</option>
                     <option value={ORDER_STATUS.CANCELLED}>Cancelled</option>
                 </select>
+                <DatePicker
+                    onChange={(dates) => {
+                        const [start, end] = dates;
+                        setStartDate(start);
+                        setEndDate(end);
+                    }}
+                    startDate={startDate}
+                    endDate={endDate}
+                    selectsRange
+                    showMonthYearDropdown
+                />
+                <Button onClick={handleClearFilters} size='small'>Clear Filters</Button>
             </GapDiv>
             {renderOrderList()}
         </Container>
