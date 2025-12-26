@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {AppBar, Toolbar, IconButton, Box, Avatar,} from '@mui/material';
+import {AppBar, Toolbar, IconButton, Box, Avatar, Button,} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useNavigate} from 'react-router';
 import styled from 'styled-components';
@@ -11,6 +11,7 @@ const StyledAppBar = styled(AppBar)`
     background-color: #fff !important;
     color: #000000 !important;
     position: relative !important;
+    height: 7vh !important;
 `;
 
 const StyledToolbar = styled(Toolbar)`
@@ -68,17 +69,17 @@ export default function Header({onToggleMobileMenu}) {
                         <UserSection>
                             <StyledAvatar>{getFirstEmailChar(user.email)}</StyledAvatar>
                             <p>{user.email}</p>
-                            <button onClick={() => setShowConfirmModal(true)}>Logout</button>
+                            <Button onClick={() => setShowConfirmModal(true)}>Logout</Button>
                         </UserSection>
-                    ) : (<button onClick={() => navigate('/login', { viewTransition: true })}>Login</button>)}
+                    ) : (<Button onClick={() => navigate('/login', { viewTransition: true })}>Login</Button>)}
                 </RightSection>
 
                 <Modal isOpen={showConfirmModal} onClose={handleCancel}>
                     <h3>Confirm Logout</h3>
                     <p>Are you sure you want to log out?</p>
                     <ModalActions>
-                        <button onClick={handleCancel}>Cancel</button>
-                        <button onClick={handleLogout}>Logout</button>
+                        <Button onClick={handleCancel}>Cancel</Button>
+                        <Button onClick={handleLogout}>Logout</Button>
                     </ModalActions>
                 </Modal>
             </StyledToolbar>

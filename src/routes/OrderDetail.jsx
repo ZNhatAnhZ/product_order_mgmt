@@ -9,6 +9,7 @@ import OrderTimeline from '../components/order/OrderTimeline.jsx';
 import {formatDate, getIsoStringDate} from '../utils/Utils.js';
 import useOrders from "../hooks/useOrders.js";
 import {useState} from "react";
+import {Button} from "@mui/material";
 
 const Container = styled.div`
     max-width: 120rem;
@@ -81,7 +82,7 @@ export default function OrderDetail() {
                 <div>
                     <h1>Order Not Found</h1>
                     <p>The order you're looking for doesn't exist or may have been removed.</p>
-                    <button onClick={handleBack}>Back to Orders</button>
+                    <Button onClick={handleBack}>Back to Orders</Button>
                 </div>
             </Container>
         );
@@ -90,7 +91,7 @@ export default function OrderDetail() {
     function getOnUpdateStatus() {
         return async (newStatus) => {
             const isoStringDate = getIsoStringDate();
-            updateOrder({id: order.id, ...order, status: newStatus, updatedAt: isoStringDate});
+            await updateOrder({id: order.id, ...order, status: newStatus, updatedAt: isoStringDate});
             setOrder(prevOrder => ({...prevOrder, status: newStatus, updatedAt: isoStringDate}));
         };
     }
@@ -158,8 +159,8 @@ export default function OrderDetail() {
                         isUpdating={isUpdating}
                     />
                     <ActionButtons>
-                        <button onClick={handleBack}>Back to Orders</button>
-                        <button onClick={handlePrint}>Print Order</button>
+                        <Button onClick={handleBack}>Back to Orders</Button>
+                        <Button onClick={handlePrint}>Print Order</Button>
                     </ActionButtons>
                 </DivColumn>
             </MainContent>

@@ -65,7 +65,7 @@ export default function useOrders() {
         data,
         isLoading,
         error,
-        updateOrder: updateMutation.mutate,
+        updateOrder: updateMutation.mutateAsync,
         isUpdating: updateMutation.isPending
     };
 }

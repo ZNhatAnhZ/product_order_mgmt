@@ -7,8 +7,7 @@ import styled from "styled-components";
 const LayoutDiv = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1
+    //justify-content: space-between;
 `
 
 const FlexDiv = styled.div`
@@ -19,7 +18,7 @@ const ContentDiv = styled.div`
     flex-grow: 1;
     margin-left: 2em;
     overflow-y: auto;
-    height: 100vh;
+    height: 89vh;
     margin-top: 1em;
 `
 

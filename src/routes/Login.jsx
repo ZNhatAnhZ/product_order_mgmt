@@ -6,6 +6,7 @@ import {Input} from "../components/common/Input.jsx";
 import useAuth from '../hooks/useAuth.js';
 import {ErrorMessage} from "../components/common/ErrorMessage.jsx";
 import {useLocation, useNavigate} from "react-router";
+import {Button} from "@mui/material";
 
 export const Login = () => {
     const {login} = useAuth();
@@ -61,7 +62,7 @@ export const Login = () => {
                 <input id='rememberMe' type="checkbox" {...register('rememberMe')}/>
                 <label htmlFor="rememberMe">Remember me</label>
             </div>
-            <button type="submit" disabled={isSubmitting || !isValid}>{isSubmitting ? 'Logging in...' : 'Submit'}</button>
+            <Button type="submit" disabled={isSubmitting || !isValid} loading={isSubmitting}>Submit</Button>
         </form>
     );
 };

@@ -3,6 +3,7 @@ import {StatusBadge} from '../common/StatusBadge.jsx';
 import {Link} from "react-router";
 import {formatCurrency, getStockStatus} from "../../utils/Utils.js";
 import {Stock} from "./Stock.jsx";
+import {Button} from "@mui/material";
 
 const Table = styled.table`
     width: 100%;
@@ -75,9 +76,9 @@ export default function ProductTable({products, onView, onEdit, onDelete}) {
                         <td><StatusBadge $status={product.status}>{product.status}</StatusBadge></td>
                         <td>
                             <ActionButtons>
-                                <button onClick={() => onView(product.id, product)}>View</button>
-                                <button onClick={() => onEdit(product.id, product)}>Edit</button>
-                                <button onClick={() => onDelete(product)}>Delete</button>
+                                <Button onClick={() => onView(product.id, product)}>View</Button>
+                                <Button onClick={() => onEdit(product.id, product)}>Edit</Button>
+                                <Button onClick={() => onDelete(product)}>Delete</Button>
                             </ActionButtons>
                         </td>
                     </tr>

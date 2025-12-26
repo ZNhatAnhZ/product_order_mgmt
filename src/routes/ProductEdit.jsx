@@ -4,6 +4,7 @@ import useProducts from '../hooks/useProducts.js';
 import {ProductForm} from '../components/product/ProductForm.jsx';
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx';
 import {getIsoStringDate} from "../utils/Utils.js";
+import {Button} from "@mui/material";
 
 const Container = styled.div`
     margin: 0 auto;
@@ -29,7 +30,7 @@ export const ProductEdit = () => {
                 ...submittedData,
                 createdAt: getIsoStringDate()
             };
-            updateProduct(submittingData);
+            await updateProduct(submittingData);
             navigate(`/products/${product.id}`, { state: { product: { ...submittingData } }, viewTransition: true });
         }
     };
@@ -49,7 +50,7 @@ export const ProductEdit = () => {
                 <Container>
                     <h2>Product Not Found</h2>
                     <h2>The product you're looking for doesn't exist or may have been removed.</h2>
-                    <button onClick={handleBack}>Back to Products</button>
+                    <Button onClick={handleBack}>Back to Products</Button>
                 </Container>
             </div>
         );

@@ -11,6 +11,8 @@ import {IoHourglass} from "react-icons/io5";
 import {TbPigMoney} from "react-icons/tb";
 import {FcStatistics} from "react-icons/fc";
 import {ErrorMessage} from "../components/common/ErrorMessage";
+import {SkeletonWrapper} from "../components/common/SkeletonWrapper";
+import {Button} from "@mui/material";
 
 const DashboardContainer = styled.div`
     padding: 1rem;
@@ -59,15 +61,11 @@ export default function Dashboard() {
         return `${sign}${change}% so với tháng trước`;
     };
 
-    if (loading) {
-        return (<CenterNotice><p>Đang tải dữ liệu dashboard...</p></CenterNotice>);
-    }
-
     if (error) {
         return (<CenterNotice><ErrorMessage>Lỗi: {error.message}</ErrorMessage></CenterNotice>);
     }
 
-    if (!dashboardData) {
+    if (!loading && !dashboardData) {
         return (<CenterNotice><p>Không có dữ liệu</p></CenterNotice>);
     }
 
@@ -75,38 +73,41 @@ export default function Dashboard() {
         <DashboardContainer>
             <DashboardHeader>
                 <h1>Dashboard</h1>
-                <button onClick={() => loadDashboard()} disabled={isRefetching}>
-                    {isRefetching ? 'Đang tải...' : 'Làm mới'}
-                </button>
+                <Button onClick={() => loadDashboard()} disabled={isRefetching} loading={isRefetching}>Làm mới</Button>
             </DashboardHeader>
-            <StatsGrid>
-                <StatsCard
-                    icon={<FaBox />}
-                    title={'Total Products'}
-                    description={`Số lượng sản phẩm: ${dashboardData.totalProducts.value}`}
-                    change={formatChange(dashboardData.totalProducts.change, dashboardData.totalProducts.changeType)}
-                />
-                <StatsCard
-                    icon={<FcStatistics />}
-                    title={'Total Orders'}
-                    description={`Số lượng đơn hàng: ${dashboardData.totalOrders.value}`}
-                    change={formatChange(dashboardData.totalOrders.change, dashboardData.totalOrders.changeType)}
-                />
-                <StatsCard
-                    isWarning={true}
-                    icon={<IoHourglass />}
-                    title={'Pending Orders'}
-                    description={`Số đơn hàng chờ xử lý: ${dashboardData.pendingOrders.value}`}
-                />
-                <StatsCard
-                    icon={<TbPigMoney />}
-                    title={'Revenue'}
-                    description={`Tổng doanh thu: ${formatCurrency(dashboardData.revenue.value)}`}
-                />
-            </StatsGrid>
-            {dashboardData.lastUpdated && (<LastUpdated>Cập nhật lần cuối: {dashboardData.lastUpdated}</LastUpdated>)}
-            <RecentOrders />
-            <LowStockAlert />
+            <SkeletonWrapper isLoading={loading || isRefetching}>
+                <StatsGrid>
+                    <StatsCard
+                        icon={<FaBox/>}
+                        title={'Total Products'}
+                        description={`Số lượng sản phẩm: ${dashboardData?.totalProducts?.value}`}
+                        change={formatChange(dashboardData?.totalProducts?.change, dashboardData?.totalProducts?.changeType)}
+                    />
+                    <StatsCard
+                        icon={<FcStatistics/>}
+                        title={'Total Orders'}
+                        description={`Số lượng đơn hàng: ${dashboardData?.totalOrders?.value}`}
+                        change={formatChange(dashboardData?.totalOrders?.change, dashboardData?.totalOrders?.changeType)}
+                    />
+                    <StatsCard
+                        isWarning={true}
+                        icon={<IoHourglass/>}
+                        title={'Pending Orders'}
+                        description={`Số đơn hàng chờ xử lý: ${dashboardData?.pendingOrders?.value}`}
+                    />
+                    <StatsCard
+                        icon={<TbPigMoney/>}
+                        title={'Revenue'}
+                        description={`Tổng doanh thu: ${formatCurrency(dashboardData?.revenue?.value)}`}
+                    />
+                </StatsGrid>
+            </SkeletonWrapper>
+            <SkeletonWrapper isLoading={loading || isRefetching}>
+                {dashboardData?.lastUpdated && (
+                    <LastUpdated>Cập nhật lần cuối: {dashboardData?.lastUpdated}</LastUpdated>)}
+            </SkeletonWrapper>
+            <RecentOrders/>
+            <LowStockAlert/>
         </DashboardContainer>
     );
 };

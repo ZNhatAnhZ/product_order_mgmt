@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Button} from "@mui/material";
 
 const PaginationDiv = styled.div`
     display: flex;
@@ -11,9 +12,9 @@ export default function Pagination({totalItems, currentFirstIndex, currentLastIn
                                        goToNextPage, goToPreviousPage}) {
     return (
         <PaginationDiv>
-            <button disabled={!hasPreviousPage} onClick={() => goToPreviousPage()}>&lt;</button>
+            <Button disabled={!hasPreviousPage} onClick={() => goToPreviousPage()}>&lt;</Button>
             <div>Showing {currentFirstIndex}-{currentLastIndex} of {totalItems}</div>
-            <button disabled={!hasNextPage} onClick={() => goToNextPage()}>&gt;</button>
+            <Button disabled={!hasNextPage} onClick={() => goToNextPage()}>&gt;</Button>
         </PaginationDiv>
     );
 }

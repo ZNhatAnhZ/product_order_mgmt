@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router';
 import { StatusBadge } from '../common/StatusBadge.jsx';
 import {formatCurrency, formatDate} from "../../utils/Utils.js";
+import {Button} from "@mui/material";
 
 const Table = styled.table`
     width: 100%;
@@ -48,7 +49,7 @@ export default function OrderTable({ orders = [], onView }) {
                                 {order.status ? order.status.charAt(0).toUpperCase() + order.status.slice(1) : 'Unknown'}
                             </StatusBadge>
                         </TableCell>
-                        <TableCell><button onClick={() => onView && onView(order.id, order)}>View</button></TableCell>
+                        <TableCell><Button onClick={() => onView && onView(order.id, order)}>View</Button></TableCell>
                     </tr>
                 ))}
             </tbody>

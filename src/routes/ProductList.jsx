@@ -1,4 +1,4 @@
-import {useState, useMemo} from 'react';
+import {useState, useMemo, useEffect} from 'react';
 import {useNavigate} from 'react-router';
 import styled from 'styled-components';
 import useDebounce from '../hooks/useDebounce.js';
@@ -9,6 +9,8 @@ import ProductTable from '../components/product/ProductTable.jsx';
 import Pagination from '../components/common/Pagination.jsx';
 import {Modal, ModalActions} from '../components/common/Modal.jsx';
 import {PRODUCT_STATUS} from "../constants/Enum.js";
+import {SkeletonWrapper} from "../components/common/SkeletonWrapper";
+import {Button} from "@mui/material";
 
 const GapDiv = styled.div`
     display: flex;
@@ -71,7 +73,7 @@ export default function ProductList() {
 
     const confirmDelete = async () => {
         if (deleteModal.product) {
-            deleteProduct(deleteModal.product.id);
+            await deleteProduct(deleteModal.product.id);
             setDeleteModal({isOpen: false, product: null});
         }
     };
@@ -86,20 +88,16 @@ export default function ProductList() {
     }
 
     const renderProductList = () => {
-        if (isLoading) {
-            return <div>Loading products...</div>;
-        }
-
-        if (filteredProducts.length === 0) {
+        if (!isLoading && filteredProducts.length === 0) {
             return (
                 <div>
                     <p>No products, adding the product?</p>
-                    <button onClick={() => handleNewProduct()}>Add First Product</button>
+                    <Button onClick={() => handleNewProduct()}>Add First Product</Button>
                 </div>
             );
         }
 
-        return <>
+        return <SkeletonWrapper isLoading={isLoading}>
             <ProductTable
                 products={currentItems}
                 onView={handleViewProduct}
@@ -113,7 +111,7 @@ export default function ProductList() {
                 hasPreviousPage={hasPreviousPage}
                 hasNextPage={hasNextPage}
                 goToPreviousPage={goToPreviousPage}/>
-        </>;
+        </SkeletonWrapper>;
     }
 
     return (
@@ -137,16 +135,16 @@ export default function ProductList() {
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                 </select>
-                <button onClick={handleClearFilters}>Clear Filters</button>
-                <button onClick={handleNewProduct}>New Product</button>
+                <Button onClick={handleClearFilters} size='small'>Clear Filters</Button>
+                <Button onClick={handleNewProduct} size='small'>New Product</Button>
             </GapDiv>
             {renderProductList()}
             <Modal isOpen={deleteModal.isOpen} onClose={() => setDeleteModal({isOpen: false, product: null})}>
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete "{deleteModal.product?.name}"?</p>
                 <ModalActions>
-                    <button onClick={() => setDeleteModal({isOpen: false, product: null})}>Cancel</button>
-                    <button onClick={confirmDelete} disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
+                    <Button onClick={() => setDeleteModal({isOpen: false, product: null})}>Cancel</Button>
+                    <Button onClick={confirmDelete} disabled={isDeleting} loading={isDeleting}>Delete</Button>
                 </ModalActions>
             </Modal>
         </div>

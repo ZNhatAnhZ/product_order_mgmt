@@ -7,6 +7,7 @@ import {StatusBadge} from '../components/common/StatusBadge.jsx';
 import {Modal, ModalActions} from '../components/common/Modal.jsx';
 import {formatCurrency, formatDate, getStockStatus} from "../utils/Utils.js";
 import {Stock} from "../components/product/Stock.jsx";
+import {Button} from "@mui/material";
 
 const ProductContent = styled.div`
     display: flex;
@@ -54,7 +55,7 @@ export default function ProductDetail() {
 
     const confirmDelete = async () => {
         if (product) {
-            deleteProduct(product.id);
+            await deleteProduct(product.id);
             setDeleteModal({isOpen: false});
             navigate('/products', { viewTransition: true });
         }
@@ -77,7 +78,7 @@ export default function ProductDetail() {
                 <NotFoundContainer>
                     <h2>Product Not Found</h2>
                     <h2>The product you're looking for doesn't exist or may have been removed.</h2>
-                    <button onClick={handleBack}>Back to Products</button>
+                    <Button onClick={handleBack}>Back to Products</Button>
                 </NotFoundContainer>
             </div>
         );
@@ -123,11 +124,11 @@ export default function ProductDetail() {
                         </InfoRow>
                     </div>
                     <ActionButtons>
-                        <button className="primary" onClick={handleEdit}>Edit Product</button>
-                        <button className="danger" onClick={handleDelete} disabled={isDeleting}>
+                        <Button onClick={handleEdit}>Edit Product</Button>
+                        <Button onClick={handleDelete} disabled={isDeleting}>
                             {isDeleting ? 'Deleting...' : 'Delete Product'}
-                        </button>
-                        <button className="secondary" onClick={handleBack}>Back to Products</button>
+                        </Button>
+                        <Button onClick={handleBack}>Back to Products</Button>
                     </ActionButtons>
                 </div>
             </ProductContent>
@@ -137,8 +138,8 @@ export default function ProductDetail() {
                 <p>Are you sure you want to delete "{product.name}"?</p>
                 <p>This action cannot be undone.</p>
                 <ModalActions>
-                    <button onClick={() => setDeleteModal({isOpen: false})}>Cancel</button>
-                    <button onClick={confirmDelete} disabled={isDeleting}>{isDeleting ? 'Deleting...' : 'Delete'}</button>
+                    <Button onClick={() => setDeleteModal({isOpen: false})}>Cancel</Button>
+                    <Button onClick={confirmDelete} disabled={isDeleting} loading={isDeleting}>Delete</Button>
                 </ModalActions>
             </Modal>
         </div>

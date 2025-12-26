@@ -4,7 +4,6 @@ import {sleep} from "../utils/Utils.js";
 import {API_BASE_URL} from "../constants/Enum.js";
 
 const fetchProducts = async () => {
-    await sleep(500);
     const url = `${API_BASE_URL}/products`;
     let response = null;
     try {
@@ -19,7 +18,7 @@ const fetchProducts = async () => {
 };
 
 const createProduct = async (productData) => {
-    await sleep(300);
+    await sleep(500);
     const url = `${API_BASE_URL}/products`;
     let response = null;
     try {
@@ -41,6 +40,7 @@ const createProduct = async (productData) => {
 };
 
 const updateProduct = async ({ id, ...productData }) => {
+    await sleep(500);
     const url = `${API_BASE_URL}/products/${id}`;
     let response = null;
     try {
@@ -61,6 +61,7 @@ const updateProduct = async ({ id, ...productData }) => {
 };
 
 const deleteProduct = async (id) => {
+    await sleep(1000);
     const url = `${API_BASE_URL}/products/${id}`;
     let response = null;
     try {
@@ -124,9 +125,9 @@ export default function useProducts() {
         data,
         isLoading,
         error,
-        createProduct: createMutation.mutate,
-        updateProduct: updateMutation.mutate,
-        deleteProduct: deleteMutation.mutate,
+        createProduct: createMutation.mutateAsync,
+        updateProduct: updateMutation.mutateAsync,
+        deleteProduct: deleteMutation.mutateAsync,
         isCreating: createMutation.isPending,
         isUpdating: updateMutation.isPending,
         isDeleting: deleteMutation.isPending,

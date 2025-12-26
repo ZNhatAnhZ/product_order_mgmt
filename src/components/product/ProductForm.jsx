@@ -5,6 +5,7 @@ import {ProductSchema} from '../../schemas/ProductSchema.js';
 import {FormInput} from '../common/FormInput.jsx';
 import {FormTextarea} from '../common/FormTextarea.jsx';
 import {FormSelect} from '../common/FormSelect.jsx';
+import {Button} from "@mui/material";
 
 const FormContainer = styled.div`
     padding: 2em;
@@ -106,11 +107,11 @@ export const ProductForm = ({onSubmit, isSubmitting = false, onCancel, initialDa
                     />
                 </FormDiv>
                 <ButtonContainer>
-                    <button onClick={() => onCancel()} disabled={isSubmitting}>Cancel</button>
+                    <Button onClick={() => onCancel()} disabled={isSubmitting}>Cancel</Button>
                     {initialData ? (
-                        <button disabled={!isValid || isSubmitting}>{isSubmitting ? 'Updating Product...' : 'Update Product'}</button>
+                        <Button type='submit' disabled={!isValid || isSubmitting} loading={isSubmitting}>Update Product</Button>
                     ) : (
-                        <button disabled={!isValid || isSubmitting}>{isSubmitting ? 'Creating Product...' : 'Create Product'}</button>
+                        <Button type='submit' disabled={!isValid || isSubmitting} loading={isSubmitting}>Create Product</Button>
                     )}
                 </ButtonContainer>
             </form>

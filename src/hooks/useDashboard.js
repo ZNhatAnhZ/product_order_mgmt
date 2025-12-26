@@ -48,6 +48,7 @@ export async function getProducts() {
 }
 
 export async function getRecentOrders() {
+    await sleep(500);
     const orders = await fetchData('/orders');
     return orders
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))

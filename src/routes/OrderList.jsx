@@ -8,6 +8,7 @@ import SearchInput from '../components/common/SearchInput.jsx';
 import OrderTable from '../components/order/OrderTable.jsx';
 import Pagination from '../components/common/Pagination.jsx';
 import {ORDER_STATUS} from '../constants/Enum.js';
+import {SkeletonWrapper} from "../components/common/SkeletonWrapper";
 
 const Container = styled.div`
     max-width: 120em;
@@ -72,16 +73,12 @@ export default function OrderList() {
     }
 
     const renderOrderList = () => {
-        if (isLoading) {
-            return (<div>Loading orders...</div>);
-        }
-
-        if (filteredOrders.length === 0) {
-            return (<div><p>No Orders Found</p></div>);
+        if (!isLoading && filteredOrders.length === 0) {
+            return (<p>No Orders Found</p>);
         }
 
         return (
-            <>
+            <SkeletonWrapper isLoading={isLoading}>
                 <OrderTable orders={currentItems} onView={handleViewOrder}/>
                 <Pagination
                     totalItems={totalItems}
@@ -92,7 +89,7 @@ export default function OrderList() {
                     hasNextPage={hasNextPage}
                     goToPreviousPage={goToPreviousPage}
                 />
-            </>
+            </SkeletonWrapper>
         );
     };
 

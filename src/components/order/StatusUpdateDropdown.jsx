@@ -2,6 +2,7 @@ import {useState} from 'react';
 import styled from 'styled-components';
 import {Modal, ModalActions} from '../common/Modal.jsx';
 import {getAvailableStatuses} from "../../utils/Utils.js";
+import {Button} from "@mui/material";
 
 const StatusSection = styled.div`
     border: 0.1em solid #e9ecef;
@@ -24,8 +25,8 @@ export default function StatusUpdateDropdown({currentStatus, onUpdateStatus, isU
         }
     };
 
-    const handleConfirmUpdate = () => {
-        onUpdateStatus(selectedStatus);
+    const handleConfirmUpdate = async () => {
+        await onUpdateStatus(selectedStatus);
         setShowConfirmModal(false);
     };
 
@@ -57,16 +58,18 @@ export default function StatusUpdateDropdown({currentStatus, onUpdateStatus, isU
                     <option value={currentStatus}>{currentStatus} (Current)</option>
                     {availableStatuses.map(status => (<option key={status} value={status}>{status}</option>))}
                 </select>
-                <button onClick={handleUpdateClick} disabled={isUpdating || selectedStatus === currentStatus}>
-                    {isUpdating ? 'Updating...' : 'Update Status'}
-                </button>
+                <Button size='small'
+                        onClick={handleUpdateClick}
+                        disabled={isUpdating || selectedStatus === currentStatus}
+                        loading={isUpdating}
+                >Update Status</Button>
             </StatusRow>
             <Modal isOpen={showConfirmModal} onClose={handleCancel}>
                 <h3>Confirm Status Change</h3>
                 <p>Are you sure you want to change the order status from<strong> {currentStatus}</strong> to<strong> {selectedStatus}</strong>?</p>
                 <ModalActions>
-                    <button onClick={handleCancel}>Cancel</button>
-                    <button onClick={handleConfirmUpdate} disabled={isUpdating}>{isUpdating ? 'Updating...' : 'Confirm'}</button>
+                    <Button onClick={handleCancel}>Cancel</Button>
+                    <Button onClick={handleConfirmUpdate} disabled={isUpdating} loading={isUpdating}>Confirm</Button>
                 </ModalActions>
             </Modal>
         </StatusSection>

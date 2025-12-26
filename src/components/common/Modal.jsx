@@ -1,5 +1,6 @@
 import '../../assets/modal.css';
 import styled from "styled-components";
+import {Button} from "@mui/material";
 
 export function Modal({ isOpen, onClose, children }) {
     if (!isOpen) {
@@ -10,7 +11,7 @@ export function Modal({ isOpen, onClose, children }) {
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content">
                 {children}
-                <button className="modal-close-button" onClick={onClose}>&times;</button>
+                <Button className="modal-close-button" onClick={onClose}>&times;</Button>
             </div>
         </div>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
+import {Button} from "@mui/material";
 
 export default function NotFound() {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function NotFound() {
             <h1>404</h1>
             <h2>Page not found</h2>
             <p>The page you're looking for doesn't exist.</p>
-            <button onClick={handleGoToDashboard}>Go to Dashboard</button>
+            <Button onClick={handleGoToDashboard}>Go to Dashboard</Button>
         </div>
     );
 }
