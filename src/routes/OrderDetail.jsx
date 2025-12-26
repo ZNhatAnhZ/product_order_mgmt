@@ -18,6 +18,7 @@ const Container = styled.div`
 const MainContent = styled.div`
     display: flex;
     gap: 2em;
+    flex-wrap: wrap;
 `;
 
 const DivColumn = styled.div`
@@ -50,16 +51,14 @@ const InfoLabel = styled.span`
 const ActionButtons = styled.div`
     display: flex;
     gap: 1rem;
+    margin-bottom: 2em;
 `;
 
 export default function OrderDetail() {
     const navigate = useNavigate();
     const {state} = useLocation();
     const [order, setOrder] = useState(state?.order);
-    const {
-        updateOrder,
-        isUpdating
-    } = useOrders();
+    const {updateOrder, isUpdating} = useOrders();
 
     const handleBack = () => {
         navigate('/orders', { viewTransition: true });

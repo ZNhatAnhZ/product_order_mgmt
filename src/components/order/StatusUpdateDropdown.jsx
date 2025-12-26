@@ -4,16 +4,13 @@ import Modal from '../common/Modal.jsx';
 import {getAvailableStatuses} from "../../utils/Utils.js";
 
 const StatusSection = styled.div`
-    border: 1px solid #e9ecef;
+    border: 0.1em solid #e9ecef;
     padding: 1em;
-    margin: 1em 0;
 `;
 
 const StatusRow = styled.div`
     display: flex;
-    align-items: center;
     gap: 1em;
-    margin-bottom: 1em;
 `;
 
 const ModalActions = styled.div`
@@ -53,41 +50,31 @@ export default function StatusUpdateDropdown({currentStatus, onUpdateStatus, isU
     }
 
     return (
-        <>
-            <StatusSection>
-                <h3>Update Order Status</h3>
-                <StatusRow>
-                    <label htmlFor="status-select">Change Status:</label>
-                    <select
-                        id="status-select"
-                        value={selectedStatus}
-                        onChange={(e) => setSelectedStatus(e.target.value)}
-                        disabled={isUpdating}
-                    >
-                        <option value={currentStatus}>{currentStatus} (Current)</option>
-                        {availableStatuses.map(status => (<option key={status} value={status}>{status}</option>))}
-                    </select>
-                    <button onClick={handleUpdateClick} disabled={isUpdating || selectedStatus === currentStatus}>
-                        {isUpdating ? 'Updating...' : 'Update Status'}
-                    </button>
-                </StatusRow>
-            </StatusSection>
-            <Modal
-                isOpen={showConfirmModal}
-                onClose={handleCancel}
-            >
-                <div>
-                    <h3>Confirm Status Change</h3>
-                    <p>Are you sure you want to change the order status from
-                        <strong> {currentStatus}</strong> to
-                        <strong> {selectedStatus}</strong>?
-                    </p>
-                    <ModalActions>
-                        <button onClick={handleCancel}>Cancel</button>
-                        <button onClick={handleConfirmUpdate} disabled={isUpdating}>{isUpdating ? 'Updating...' : 'Confirm'}</button>
-                    </ModalActions>
-                </div>
+        <StatusSection>
+            <h3>Update Order Status</h3>
+            <StatusRow>
+                <label htmlFor="status-select">Change Status:</label>
+                <select
+                    id="status-select"
+                    value={selectedStatus}
+                    onChange={(e) => setSelectedStatus(e.target.value)}
+                    disabled={isUpdating}
+                >
+                    <option value={currentStatus}>{currentStatus} (Current)</option>
+                    {availableStatuses.map(status => (<option key={status} value={status}>{status}</option>))}
+                </select>
+                <button onClick={handleUpdateClick} disabled={isUpdating || selectedStatus === currentStatus}>
+                    {isUpdating ? 'Updating...' : 'Update Status'}
+                </button>
+            </StatusRow>
+            <Modal isOpen={showConfirmModal} onClose={handleCancel}>
+                <h3>Confirm Status Change</h3>
+                <p>Are you sure you want to change the order status from<strong> {currentStatus}</strong> to<strong> {selectedStatus}</strong>?</p>
+                <ModalActions>
+                    <button onClick={handleCancel}>Cancel</button>
+                    <button onClick={handleConfirmUpdate} disabled={isUpdating}>{isUpdating ? 'Updating...' : 'Confirm'}</button>
+                </ModalActions>
             </Modal>
-        </>
+        </StatusSection>
     );
 }
