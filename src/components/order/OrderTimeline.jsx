@@ -1,64 +1,31 @@
 import styled from 'styled-components';
 import { formatDate } from '../../utils/Utils.js';
+import {TimelineItem, TimelineSeparator, Timeline, TimelineDot, TimelineConnector, TimelineContent} from "@mui/lab";
 
-const TimelineContainer = styled.div`
+const TimeLineStyled = styled(Timeline)`
+    margin-top: 1em;
     border: 0.1em solid #e9ecef;
     padding: 1em;
 `;
 
-const TimelineList = styled.ul`
-    list-style: none;
+const TimeLineItemStyled = styled(TimelineItem)`
     padding: 0;
-    position: relative;
-    
-    &:before {
-        content: '';
-        position: absolute;
-        left: 1em;
-        top: 0.1em;
-        bottom: 0;
-        width: 0.1em;
-        background-color: #e9ecef;
-    }
 `;
 
-const TimelineItem = styled.li`
-    position: relative;
-    padding: 0 0 1em 2.5em;
-    
-    &:before {
-        content: '';
-        position: absolute;
-        left: 0.5em;
-        width: 0.8em;
-        height: 0.8em;
-        border-radius: 50%;
-        background-color: ${props => {
-            switch (props.$status) {
-                case 'pending': return '#ffc107';
-                case 'processing': return '#17a2b8';
-                case 'completed': return '#28a745';
-                case 'cancelled': return '#dc3545';
-                default: return '#6c757d';
-            }
-        }};
-        border: 0.2em solid white;
-        box-shadow: 0 0 0 0.1em ${props => {
-            switch (props.$status) {
-                case 'pending': return '#ffc107';
-                case 'processing': return '#17a2b8';
-                case 'completed': return '#28a745';
-                case 'cancelled': return '#dc3545';
-                default: return '#6c757d';
-            }
-        }};
+const getColor = (status) => {
+    switch (status) {
+        case 'pending':
+            return 'secondary';
+        case 'processing':
+            return 'primary';
+        case 'completed':
+            return 'success';
+        case 'cancelled':
+            return 'warning';
+        default:
+            return 'grey';
     }
-`;
-
-const TimelineContent = styled.div`
-    background-color: #f8f9fa;
-    padding: 0.75em;
-`;
+};
 
 // Mock timeline data - this should be from the history API
 const generateTimeline = (order) => {
@@ -109,26 +76,28 @@ export default function OrderTimeline({ order }) {
 
     if (!timeline || timeline.length === 0) {
         return (
-            <TimelineContainer>
+            <TimeLineStyled>
                 <h3>Order Timeline</h3>
                 <p>No timeline data available</p>
-            </TimelineContainer>
+            </TimeLineStyled>
         );
     }
 
     return (
-        <TimelineContainer>
-            <h3>Order Timeline</h3>
-            <TimelineList>
+            <TimeLineStyled position="alternate">
+                <h3>Order Timeline</h3>
                 {timeline.map((item) => (
-                    <TimelineItem key={item.status} $status={item.status}>
-                        <TimelineContent>
-                            <div>{formatDate(item.date)}</div>
-                            <div>{item.description}</div>
-                        </TimelineContent>
-                    </TimelineItem>
-                ))}
-            </TimelineList>
-        </TimelineContainer>
+                        <TimeLineItemStyled key={item.status}>
+                            <TimelineSeparator>
+                                <TimelineDot color={getColor(item.status)}/>
+                                {item.status === 'completed' || item.status === 'cancelled' ? null : (<TimelineConnector />)}
+                            </TimelineSeparator>
+                            <TimelineContent>
+                                <div>{formatDate(item.date)}</div>
+                                <div>{item.description}</div>
+                            </TimelineContent>
+                        </TimeLineItemStyled>
+                    ))}
+            </TimeLineStyled>
     );
 }
